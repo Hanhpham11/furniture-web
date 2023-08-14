@@ -1,0 +1,4 @@
+{
+    "editor.fomatOnSave": true,
+    "editor.defautformatter":"esbenp.prettier-vscode"
+}

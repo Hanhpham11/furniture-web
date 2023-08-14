@@ -1,0 +1,44 @@
+* {
+  font-family: Poppins;
+}
+.banner {
+  width: 100vw;
+  height: 316px;
+  flex-shrink: 0;
+  background: url('/public/images/covershop.png'),
+    lightgray 50% / cover no-repeat;
+  /* filter: blur(3px); */
+  background-color: antiquewhite;
+  font-family: Poppins;
+  font-size: 46px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.banner p {
+  font-size: 16px;
+}
+.navbar {
+  height: 100px;
+  flex-shrink: 0;
+  background: #f9f1e7;
+  justify-content: space-evenly;
+  overflow: hidden;
+}
+
+.navbar p,
+select {
+  font-size: 20px;
+}
+.add {
+  display: none;
+}
+.card:hover {
+  .add {
+    display: block;
+    z-index: -1;
+  }
+}

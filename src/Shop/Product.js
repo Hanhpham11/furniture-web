@@ -1,4 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, {
+  useState,
+  useEffect,
+} from 'react';
 import { Link } from 'react-router-dom';
 import '../css/Reset.css';
 import '../css/Product.css';
@@ -29,10 +32,13 @@ function Product() {
     getData();
   }, []);
   return (
-    <div className="w-full">
+    <div className="w-full overflow-hidden">
       <div className="cover items-center">
-        <div className="banner items-center justify-self-center">
-          <Link to={'/shop'} className=" items-center">
+        <div className="shopbanner items-center justify-self-center">
+          <Link
+            to={'/shop'}
+            className=" items-center"
+          >
             <span>Shop</span>
           </Link>
           <div className="flex">
@@ -124,7 +130,10 @@ function Product() {
                 <img
                   alt=""
                   src={item.url}
-                  style={{ width: 285, height: 301 }}
+                  style={{
+                    width: 285,
+                    height: 301,
+                  }}
                 />
                 <div className="add w-[285px] h-[301px]">
                   <button className="  bottom-2 left-2 border-solid border h-[48px] w-[202px]">

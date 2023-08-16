@@ -4,13 +4,14 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from 'react-router-dom';
-import Shop from './pages/Shop';
+import Shop from './Shop/Shop.js';
+import Home from './Home/Home';
 
 const router = createBrowserRouter([
-  // {
-  //   path: '/',
-  //   element: ,
-  // },
+  {
+    path: '/',
+    element: <Home />,
+  },
   {
     path: '/shop',
     element: <Shop />,

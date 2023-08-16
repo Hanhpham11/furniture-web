@@ -1,58 +1,57 @@
 import React from 'react';
+import './Header.css';
 import { Link } from 'react-router-dom';
-import '../css/Header.css';
 const Header = () => {
   return (
     <div className="w-full h-[100px] bg-white pl-[54px] ">
       <div className="flex flex-row  gap-[158px]  ">
-        <div className="logo flex flex-row gap-[5px] items-center h-[100px]">
+        <div className=" logo flex flex-row gap-[5px] items-center h-[100px]">
           <img
-            src="./logo12.png"
+            src="/logo12.png "
+            alt=""
             className="w-[50px] h-[32px]"
           ></img>
-          <a href="#">Furino</a>
+          <Link to={'/'}>
+            <p>Funiro</p>
+          </Link>
         </div>
         <div className="flex flex-row gap-[75px] ml-[108px] items-center h-[100px]">
-          <Link to={'/shop'}>
-            <p className="leading-[24px] text-[16px] text-black font-sans">
-              Home
-            </p>
+          <Link to={'/'}>
+            <p>Home</p>
           </Link>
           <Link to={'/shop'}>
-            <p className="leading-[24px] text-[16px] text-black font-sans">
-              Shop
-            </p>
+            <p>Shop</p>
           </Link>
           <Link to={'/shop'}>
-            <p className="leading-[24px] text-[16px] text-black font-sans">
-              About
-            </p>
+            <p>About</p>
           </Link>
           <Link to={'/shop'}>
-            <p className="leading-[24px] text-[16px] text-black font-sans">
-              Contact
-            </p>
+            <p>Contact</p>
           </Link>
         </div>
 
-        {/* <div className="flex flex-row gap-[45px] items-center h-[100px] ">
+        <div className="flex flex-row gap-[45px] items-center h-[100px] ">
           <img
+            alt=""
             src="image/mdi_account-alert-outline.png"
             className="w-[28px] h-[28px] "
           ></img>
           <img
+            alt=""
             src="image/akar-icons_search.png"
             className="w-[28px] h-[28px] "
           ></img>
           <img
+            alt=""
             src="image/akar-icons_heart.png"
             className="w-[28px] h-[28px] "
           ></img>
           <img
+            alt=""
             src="image/ant-design_shopping-cart-outlined.png"
             className="w-[28px] h-[28px] "
           ></img>
-        </div> */}
+        </div>
       </div>
     </div>
   );

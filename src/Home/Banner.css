@@ -1,0 +1,9 @@
+* {
+  font-family: Poppins;
+}
+
+.banner {
+  background: url('/public/images/background.png');
+  height: 700px;
+  background-color: aliceblue;
+}

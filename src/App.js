@@ -7,8 +7,12 @@ import {
 import Shop from './pages/Shop';
 
 const router = createBrowserRouter([
+  // {
+  //   path: '/',
+  //   element: ,
+  // },
   {
-    path: '/',
+    path: '/shop',
     element: <Shop />,
   },
 ]);

@@ -30,7 +30,7 @@ function Product() {
   }, []);
   return (
     <div className="w-full">
-      <div className="container cover items-center">
+      <div className="cover items-center">
         <div className="banner items-center justify-self-center">
           <Link to={'/shop'} className=" items-center">
             <span>Shop</span>
@@ -54,7 +54,7 @@ function Product() {
         </div>
       </div>
 
-      <div className="navbar flex items-center ">
+      <div className="navbar  flex items-center ">
         <div className="flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -118,21 +118,29 @@ function Product() {
       </div>
       <div className="grid grid-cols-4 gap-4">
         {list.map((item, index) => (
-          <div className=" card container w-full my-5 mx-8 text-left ">
+          <div className=" card container w-full my-5 mx-8 text-left  ">
             <div>
-              <img
-                alt=""
-                src={item.url}
-                style={{ width: 285, height: 301 }}
-              />
-              <Link>
-                <p className="py-2">{item.title}</p>
-              </Link>
-              <span>{item.price}</span>
-              <div className="add">
-                <button>Add to Cart</button>
-                <FaRegHeart></FaRegHeart> <p>Like</p>
+              <div className="item  ">
+                <img
+                  alt=""
+                  src={item.url}
+                  style={{ width: 285, height: 301 }}
+                />
+                <div className="add w-[285px] h-[301px]">
+                  <button className="  bottom-2 left-2 border-solid border h-[48px] w-[202px]">
+                    Add to Cart
+                  </button>
+                </div>
               </div>
+              <Link>
+                <p className="py-2 text-[20px]">
+                  {item.type}
+                </p>
+              </Link>
+              <p>{item.name}</p>
+              <span className="text-[18px]">
+                {item.price}
+              </span>
             </div>
           </div>
         ))}

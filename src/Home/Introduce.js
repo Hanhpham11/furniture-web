@@ -38,7 +38,7 @@ function Introduce() {
             alt=""
           ></img>
           <p className="leading-[36px] text-[24px]">
-            Bedrooma
+            Bedroom
           </p>
         </div>
       </div>

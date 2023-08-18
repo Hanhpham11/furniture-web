@@ -2,7 +2,6 @@
   font-family: Poppins;
 }
 .shopbanner {
-  width: 1440px;
   height: 316px;
   flex-shrink: 0;
   background: url('/public/images/covershop.png'),

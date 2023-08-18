@@ -32,7 +32,7 @@ function Product() {
     getData();
   }, []);
   return (
-    <div className="w-full overflow-hidden">
+    <div className="w-full">
       <div className="cover items-center">
         <div className="shopbanner items-center justify-self-center">
           <Link

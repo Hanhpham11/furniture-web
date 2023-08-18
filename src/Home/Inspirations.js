@@ -38,7 +38,7 @@ function Inspirations() {
         </div>
         <div className="w-[48px] h-[48px] items-center bg-orange-300 mt-[510px] px-[12px] py-[12px]">
           <img
-            src="image/Right 16px.png"
+            src="./images/Right16.png"
             className="w-[24px] h-[24px]"
             alt=""
           ></img>
@@ -53,7 +53,7 @@ function Inspirations() {
           />
           <button className="w-[48px] h-[48px] bg-white rounded-full absolute px-[12px] py-[12px] mt-[267px] ml-[345px]">
             <img
-              src="image/Right 24px.png"
+              src="./images/Right24.png"
               className="w-[24px] h-[24px]"
               alt=""
             ></img>

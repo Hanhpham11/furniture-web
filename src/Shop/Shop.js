@@ -8,7 +8,7 @@ import Footer from '../component/Footer';
 function Shop() {
   return (
     <ShopProvider>
-      <div>
+      <div className="overflow-hidden">
         <Header />
         <Product />
         <Footer />

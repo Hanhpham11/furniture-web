@@ -63,19 +63,21 @@ function DetailsProduct() {
             )}
           </div>
         </div>
-        <div className="flex mx-5">
-          {detail && (
-            <img
-              alt=""
-              src={detail.url}
-              style={{
-                width: 423,
-                height: 500,
-              }}
-            />
-          )}
-          <div className="flex flex-col">
-            <h3 className="text-[42px] pl-3">
+        <div className="flex gap-[100px] py-5">
+          <div className="flex mx-5  flex-2 ">
+            {detail && (
+              <img
+                alt=""
+                src={detail.url}
+                style={{
+                  width: 423,
+                  height: 500,
+                }}
+              />
+            )}
+          </div>
+          <div className="flex flex-col flex-1 ">
+            <h3 className="text-[42px] ">
               {detail.name}
             </h3>
             <span>{detail.price}</span>

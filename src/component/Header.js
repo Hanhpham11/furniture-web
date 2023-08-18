@@ -33,22 +33,22 @@ const Header = () => {
         <div className="flex flex-row gap-[45px] items-center h-[100px] ">
           <img
             alt=""
-            src="./images/mdi_account-alert-outline.png"
+            src="/images/mdi_account-alert-outline.png"
             className="w-[28px] h-[28px] "
           ></img>
           <img
             alt=""
-            src="./images/akar-icons_search.png"
+            src="/images/akar-icons_search.png"
             className="w-[28px] h-[28px] "
           ></img>
           <img
             alt=""
-            src="./images/akar-icons_heart.png"
+            src="/images/akar-icons_heart.png"
             className="w-[28px] h-[28px] "
           ></img>
           <img
             alt=""
-            src="./images/ant-design_shopping-cart-outlined.png"
+            src="/images/ant-design_shopping-cart-outlined.png"
             className="w-[28px] h-[28px] "
           ></img>
         </div>

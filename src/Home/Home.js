@@ -4,6 +4,8 @@ import Footer from '../component/Footer';
 import Banner from './Banner';
 import Introduce from './Introduce';
 import Inspirations from './Inspirations';
+import Share from './Share';
+import OurProducts from './OurProducts';
 
 function Home() {
   return (
@@ -11,7 +13,9 @@ function Home() {
       <Header />
       <Banner />
       <Introduce />
+      <OurProducts />
       <Inspirations />
+      <Share />
       <Footer />
     </div>
   );

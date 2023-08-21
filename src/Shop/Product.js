@@ -7,12 +7,12 @@ import '../css/Reset.css';
 import '../css/Product.css';
 import axios from 'axios';
 import { useShopContext } from '../context/ShopContext';
-import { FaRegHeart } from 'react-icons/fa';
 import { useShopContext1 } from '../component/ShopContext1';
 
 function Product() {
   const { list, setList } = useShopContext();
-  const [showImagem, setImage] = useState('');
+  // const [showImagem, setImage] = useState('');
+
   const getData = async () => {
     const response = await axios.get(
       'https://64d61e33754d3e0f1361a0ec.mockapi.io/products',
@@ -27,7 +27,6 @@ function Product() {
     if (response.status === 200) {
       setList(response.data);
     }
-    console.log(response);
   };
   useEffect(() => {
     getData();
@@ -121,14 +120,14 @@ function Product() {
         <div className=" flex border border-indigo-600 ">
           <p className="px-3">Short by</p>
           <select>
-            <option>Sofa</option>
-            <option>Bed</option>
-            <option>Dining table</option>
-            <option>wardrobep</option>
+            <option value={8}>8</option>
+            <option value={12}>12</option>
+            <option value={12}>16</option>
+            <option value={20}> 20</option>
           </select>
         </div>
       </div>
-      <div className="grid grid-cols-4 gap-4">
+      <div className="grid grid-cols-4 gap-4 mx-[100px]">
         {list.map((item, index) => (
           <div
             key={index}
@@ -167,6 +166,7 @@ function Product() {
         ))}
         ;
       </div>
+      <div id="pagination"></div>
     </div>
   );
 }

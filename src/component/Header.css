@@ -8,12 +8,6 @@
   display: flex;
 }
 .dos {
-  position: absolute;
-  z-index: 2;
-
   background-color: rgb(249, 252, 251);
   box-shadow: 2px;
-  margin: 0;
-  margin-left: -287px;
-  margin-top: 64px;
 }

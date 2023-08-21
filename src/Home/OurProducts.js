@@ -3,7 +3,9 @@ import React, {
   useEffect,
   useState,
 } from 'react';
+import '../css/Product.css';
 import { Link } from 'react-router-dom';
+import { useShopContext1 } from '../component/ShopContext1';
 function OurProducts() {
   const [items, setItems] = useState([]);
   const getData = async () => {
@@ -22,11 +24,14 @@ function OurProducts() {
       setItems(response.data);
     }
   };
+  const { cart, setCart } = useShopContext1();
+  const Add1 = (hi) => {
+    setCart([hi, ...cart]);
+  };
   useEffect(() => {
     getData();
   }, []);
   const showProduct = items.splice(8, 9);
-  const d = () => {};
   return (
     <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px]  ">
       <div className="flex flex-col gap-[32px] items-center ">
@@ -35,30 +40,39 @@ function OurProducts() {
         </h4>
         <div className="grid grid-cols-4 gap-[32px] ">
           {items.map((item, index) => (
-            <Link
-              to={'/Single Product/' + item.id}
-              state={item}
+            <div
+              key={index}
+              className="post-item flex-flex-col bg-[#F4F5F7] gap-[8px] w-[285px] h-[446px]"
             >
-              <div
-                key={index}
-                className="post-item flex-flex-col bg-[#F4F5F7] gap-[8px] w-[285px] h-[446px]"
-              >
+              <div className="item  ">
                 <img
-                  className="w-[285px] h-[301px]"
-                  src={item.url}
                   alt=""
+                  src={item.url}
+                  style={{
+                    width: 285,
+                    height: 301,
+                  }}
                 />
-                <p className=" ml-[16px] mt-[8px] leading-[28.8px] text-[24px] text-black">
-                  {item.type}
-                </p>
-                <p className=" ml-[16px] leading-[24px] text-[16px] text-[#898989]">
-                  {item.name}
-                </p>
-                <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
-                  {item.price}
-                </p>
+                <div className="add w-[285px] h-[301px]">
+                  <button
+                    onClick={() => Add1(item)}
+                    className="  bottom-2 left-2 border-solid border h-[48px] w-[202px]"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
               </div>
-            </Link>
+
+              <p className=" ml-[16px] mt-[8px] leading-[28.8px] text-[24px] text-black">
+                {item.type}
+              </p>
+              <p className=" ml-[16px] leading-[24px] text-[16px] text-[#898989]">
+                {item.name}
+              </p>
+              <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
+                {item.price}
+              </p>
+            </div>
           ))}
         </div>
       </div>

@@ -56,7 +56,9 @@ const Checkout2 = () => {
       <div className="flex flex-col w-[608px] h-[789px] pt-[87px] pl-[38px]">
         <div className="flex flex-row justify-between">
           <div className="flex flex-col gap-[14px]">
-            <p className="leading-[36px] text-[24px] text-black "></p>
+            <p className="leading-[36px] text-[24px] text-black ">
+              Product
+            </p>
           </div>
         </div>
       </div>

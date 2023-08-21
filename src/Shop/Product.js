@@ -33,8 +33,8 @@ function Product() {
     getData();
   }, []);
   const { cart, setCart } = useShopContext1();
-  const Add = (hi) => {
-    setCart([hi, ...cart]);
+  const Add1 = (hello) => {
+    setCart([hello, ...cart]);
   };
 
   return (
@@ -130,7 +130,10 @@ function Product() {
       </div>
       <div className="grid grid-cols-4 gap-4">
         {list.map((item, index) => (
-          <div className=" card container w-full my-5 mx-8 text-left  ">
+          <div
+            key={index}
+            className=" card container w-full my-5 mx-8 text-left  "
+          >
             <div>
               <div className="item  ">
                 <img
@@ -143,7 +146,7 @@ function Product() {
                 />
                 <div className="add w-[285px] h-[301px]">
                   <button
-                    onClick={() => Add(item)}
+                    onClick={() => Add1(item)}
                     className="  bottom-2 left-2 border-solid border h-[48px] w-[202px]"
                   >
                     Add to Cart

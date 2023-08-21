@@ -8,7 +8,7 @@ function OurProducts() {
   const [items, setItems] = useState([]);
   const getData = async () => {
     const response = await axios.get(
-      'https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure',
+      'https://64d61e33754d3e0f1361a0ec.mockapi.io//products',
       {
         params: {
           filter: {
@@ -25,6 +25,7 @@ function OurProducts() {
   useEffect(() => {
     getData();
   }, []);
+  const showProduct = items.splice(8, 9);
   return (
     <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px]  ">
       <div className="flex flex-col gap-[32px] items-center ">
@@ -43,14 +44,14 @@ function OurProducts() {
               >
                 <img
                   className="w-[285px] h-[301px]"
-                  src={item.image}
+                  src={item.url}
                   alt=""
                 />
                 <p className=" ml-[16px] mt-[8px] leading-[28.8px] text-[24px] text-black">
-                  {item.title}
+                  {item.type}
                 </p>
                 <p className=" ml-[16px] leading-[24px] text-[16px] text-[#898989]">
-                  {item.description}
+                  {item.name}
                 </p>
                 <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
                   {item.price}

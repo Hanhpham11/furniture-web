@@ -1,7 +1,7 @@
 import React from 'react';
 const Footer = () => {
   return (
-    <div className="w-full h-[505px] pt-[48px] pl-[100px] flex flex-col gap-12 border-t-2">
+    <div className="w-full h-[505px] border-slate-300 pt-[48px] px-[100px] border-solid border-t-2 flex flex-col gap-12 mt-[30px] ">
       <div className="flex flex-row gap-[138px]">
         <div className="flex flex-col gap-[50px] w-[285px]">
           <h1 className="leading-[36px] text-[24px] text-black">
@@ -9,8 +9,8 @@ const Footer = () => {
           </h1>
           <div className="w-[285px] h-[72px]">
             <p className="leading-[24px] text-[16px] text-gray-600">
-              400 University Drive Suite 200 Coral Gables,
-              FL 33134 USA
+              400 University Drive Suite 200 Coral
+              Gables, FL 33134 USA
             </p>
           </div>
         </div>
@@ -59,7 +59,7 @@ const Footer = () => {
         </button>
       </div>
 
-      <div className="w-[1240px] h-[1px] bg-gray-700"></div>
+      <div className="w-full h-[1px] bg-gray-700 "></div>
       <p className="leading-[24px] text-[16px] text-black">
         2023 furino. All rights reverved
       </p>

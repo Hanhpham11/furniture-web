@@ -6,6 +6,9 @@ import {
 } from 'react-router-dom';
 import Shop from './Shop/Shop.js';
 import Home from './Home/Home';
+import Contact from './component/Contact Us/Contact';
+import Checkout from './component/Chech out/Checkout';
+import { ShopProvider1 } from './component/ShopContext1';
 
 const router = createBrowserRouter([
   {
@@ -16,10 +19,22 @@ const router = createBrowserRouter([
     path: '/shop',
     element: <Shop />,
   },
+  {
+    path: '/Contact Us',
+    element: <Contact />,
+  },
+  {
+    path: '/Check out',
+    element: <Checkout />,
+  },
 ]);
 
 const App = () => {
-  return <RouterProvider router={router} />;
+  return (
+    <ShopProvider1>
+      <RouterProvider router={router} />
+    </ShopProvider1>
+  );
 };
 
 export default App;

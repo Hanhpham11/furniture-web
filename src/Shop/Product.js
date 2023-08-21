@@ -8,6 +8,7 @@ import '../css/Product.css';
 import axios from 'axios';
 import { useShopContext } from '../context/ShopContext';
 import { FaRegHeart } from 'react-icons/fa';
+import { useShopContext1 } from '../component/ShopContext1';
 
 function Product() {
   const { list, setList } = useShopContext();
@@ -31,6 +32,11 @@ function Product() {
   useEffect(() => {
     getData();
   }, []);
+  const { cart, setCart } = useShopContext1();
+  const Add = (hi) => {
+    setCart([hi, ...cart]);
+  };
+
   return (
     <div className="w-full">
       <div className="cover items-center">
@@ -136,7 +142,10 @@ function Product() {
                   }}
                 />
                 <div className="add w-[285px] h-[301px]">
-                  <button className="  bottom-2 left-2 border-solid border h-[48px] w-[202px]">
+                  <button
+                    onClick={() => Add(item)}
+                    className="  bottom-2 left-2 border-solid border h-[48px] w-[202px]"
+                  >
                     Add to Cart
                   </button>
                 </div>

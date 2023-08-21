@@ -150,7 +150,7 @@ function Product() {
                   </button>
                 </div>
               </div>
-              <Link>
+              <Link to={'/detail/' + item.id}>
                 <p className="py-2 text-[20px]">
                   {item.type}
                 </p>

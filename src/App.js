@@ -6,9 +6,13 @@ import {
 } from 'react-router-dom';
 import Shop from './Shop/Shop.js';
 import Home from './Home/Home';
+<<<<<<< HEAD
 import Contact from './component/Contact Us/Contact';
 import Checkout from './component/Chech out/Checkout';
 import { ShopProvider1 } from './component/ShopContext1';
+=======
+import Details from './DetailsProducts/Details';
+>>>>>>> 0db4408bb14bc0d1e624a9c04b129e6291001b57
 
 const router = createBrowserRouter([
   {
@@ -26,6 +30,10 @@ const router = createBrowserRouter([
   {
     path: '/Check out',
     element: <Checkout />,
+  },
+  {
+    path: '/detail/:id',
+    element: <Details />,
   },
 ]);
 

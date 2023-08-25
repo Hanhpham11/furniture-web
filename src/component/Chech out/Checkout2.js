@@ -1,5 +1,12 @@
 import React from 'react';
+import { groupBy, keys } from 'ramda';
+import { useShopContext1 } from '../ShopContext1';
 const Checkout2 = () => {
+  const { cart = [] } = useShopContext1();
+  const result = groupBy(({ id }) => id)(cart);
+  console.log(111, result);
+
+  const carts = keys(result);
   return (
     <div className="w-full h-[1829px] bg-white pt-[63px] pl-[100px] pr-[98px] flex flex-row gap-[26px]">
       <div className="flex flex-col w-[608px] h-[1714px] pt-[35px] pl-[74px]">
@@ -15,52 +22,124 @@ const Checkout2 = () => {
           </p>
         </div>
         <div className="flex flex-row gap-[31px] mt-[22px]">
-          <button className="w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"></button>
-          <button className="w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"></button>
+          <input className="w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"></input>
+          <input className="w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"></input>
         </div>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Company Name (Optional)
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Country / Region
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Street address
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Town / City
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Province
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           ZIP code
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Phone
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Email address
         </p>
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
 
-        <button className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[58px]"></button>
+        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[58px]"></input>
       </div>
-      <div className="flex flex-col w-[608px] h-[789px] pt-[87px] pl-[38px]">
+      <div className="flex flex-col w-[608px] h-[789px] pt-[87px] pl-[38px] pr-[37px]">
         <div className="flex flex-row justify-between">
-          <div className="flex flex-col gap-[14px]">
-            <p className="leading-[36px] text-[24px] text-black ">
-              Product
-            </p>
-          </div>
+          <p className="leading-[36px] text-[24px] text-black">
+            Product
+          </p>
+          <p className="leading-[36px] text-[24px] text-black">
+            Subtotal
+          </p>
         </div>
+        {carts?.map((key, index) => (
+          <div>
+            {result[key] && result[key][0] && (
+              <div className="flex flex-row mt-[14px] justify-between  ">
+                <div className="flex flex-row">
+                  <p className="leading-[24px] text-[16px] text-[#9F9F9F] w-[108px]">
+                    {result[key][0].name}
+                  </p>
+                  <p className="leading-[24px] text-[16px] text-black ml-[11px]">
+                    x
+                  </p>
+                  <p className="leading-[24px] text-[16px] text-black ml-[10px]">
+                    {result[key].length}
+                  </p>
+                </div>
+                <p className="leading-[24px] w-[109px] text-[16px] text-black text-end ">
+                  {result[key][0].price}
+                </p>
+              </div>
+            )}
+          </div>
+        ))}
+        <div className="flex flex-row mt-[22px] justify-between ">
+          <p className="leading-[24px] text-[16px] text-black">
+            Subtotal
+          </p>
+          <p className="leading-[24px] text-[16px] text-black "></p>
+        </div>
+        <div className="flex flex-row mt-[16px] justify-between ">
+          <p className="leading-[24px] text-[16px] text-black mt-[6px]">
+            Total
+          </p>
+          <p className="leading-[36px] text-[24px] text-[#B88E2F] "></p>
+        </div>
+        <div className="w-full h-[1px] bg-[#D9D9D9] mt-[39.5px]"></div>
+        <div className="flex flex-row gap-[15px] mt-[22.5px] items-center">
+          <button className="rounded-full w-[14px] h-[14px] border border-solid border-black bg-black"></button>
+          <p className="leading-[24px] text-[16px] text-black font-[400]">
+            Direct Bank Transfer
+          </p>
+        </div>
+        <p className="leading-[24px] text-[16px] text-[#9F9F9F] mt-[11px] ">
+          Make your payment directly into our bank
+          account. Please use your Order ID as the
+          payment reference. Your order will not
+          be shipped until the funds have cleared
+          in our account.
+        </p>
+        <div className="flex flex-row gap-[15px] mt-[25px] items-center">
+          <button className="rounded-full w-[14px] h-[14px] border border-solid border-black bg-white"></button>
+          <p className="leading-[24px] text-[16px] text-black font-[400]">
+            Direct Bank Transfer
+          </p>
+        </div>
+        <div className="flex flex-row gap-[15px] mt-[11px] items-center">
+          <button className="rounded-full w-[14px] h-[14px] border border-solid border-black bg-white"></button>
+          <p className="leading-[24px] text-[16px] text-black font-[400]">
+            Cash On Delivery
+          </p>
+        </div>
+        <p className="leading-[24px] text-[16px] text-black mt-[22px]">
+          Your personal data will be used to
+          support your experience throughout this
+          website, to manage access to your
+          account, and for other purposes
+          described in our privacy policy.
+        </p>
+        <button className="ml-[111px] mt-[39px] w-[318px] h-[64px] text-center leading-[30px] text-[20px] text-black rounded-[8px] border border-solid border-black ">
+          {' '}
+          Place order
+        </button>
       </div>
     </div>
   );

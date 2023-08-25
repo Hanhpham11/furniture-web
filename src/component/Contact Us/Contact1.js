@@ -5,9 +5,9 @@ const Contact1 = () => {
       <div className="flex flex-col absolute w-[196px] ml-[622px] mt-[62px] items-center">
         <img
           src="/images/logo15.png"
-          className="w-[77px] h-[77px]"
+          className="w-[77px] h-[77px] mt-[61px]"
         />
-        <h1 className=" text-[48px] text-black ">
+        <h1 className=" text-[48px] text-black mt-[-25px] ">
           Contact
         </h1>
         <div className="flex flex-row gap-[6px] h-[24px] items-center">

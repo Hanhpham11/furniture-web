@@ -12,6 +12,22 @@ const Header = () => {
 
   const carts = keys(result);
 
+  // const Delete = (dele) => {
+  //   const UnDelete = carts.findIndex(
+  //     (item) => item === '1'
+  //   );
+
+  //   cart.splice(UnDelete, 1);
+  // };
+  const Delete = (dele) => {
+    carts.splice(carts.indexOf(dele), 1);
+  };
+  console.log('hi', carts);
+  // cart.map((item) => {
+  //   const Sub = 0;
+  //   return (Sub = Sub + item.price);
+  // });
+  const Sub = 0;
   return (
     <div>
       <div className="w-full h-[100px] bg-white pl-[54px] fixed top-0 left-0 right-0 z-10">
@@ -36,7 +52,7 @@ const Header = () => {
             <Link to={'/shop'}>
               <p>About</p>
             </Link>
-            <Link to={'/Contact Us'}>
+            <Link to={'/ContactUs'}>
               <p>Contact</p>
             </Link>
           </div>
@@ -66,7 +82,15 @@ const Header = () => {
                   data-toggle="collapse"
                   data-target="#Number1"
                 ></img>
-                <p className=" text-10px text-red-500 mt-[5px]">
+                <p
+                  style={{
+                    color:
+                      cart.length !== 0
+                        ? 'red'
+                        : 'white',
+                  }}
+                  className=" text-10px  mt-[5px]"
+                >
                   {cart && cart.length}
                 </p>
               </div>
@@ -120,6 +144,9 @@ const Header = () => {
                           </div>
                         </div>
                         <img
+                          onClick={() =>
+                            Delete(key)
+                          }
                           src="/images/Vector1.png"
                           className="w-[20px] h-[20px]"
                         />
@@ -132,7 +159,15 @@ const Header = () => {
                 <p className="leading-[24px] text-[16px] text-black">
                   Subtotal
                 </p>
-                <p className="leading-[24px] text-[16px] text-[#B88E2F]"></p>
+                <p className="leading-[24px] text-[16px] text-[#B88E2F]">
+                  {/* {cart.map((item) => {
+                    {
+                      return (
+                        cart[item].price + Sub
+                      );
+                    }
+                  })} */}
+                </p>
               </div>
             </div>
 
@@ -140,7 +175,7 @@ const Header = () => {
               <button className="leading-[18px] text-[12px] border tex-black rounded-[50px] w-[87px] h-[30px] text-center border">
                 Cart
               </button>
-              <Link to={'/Check out'}>
+              <Link to={'/Checkout'}>
                 <button className="leading-[18px] text-[12px] border tex-black rounded-[50px] w-[118px] h-[30px] text-center border">
                   Checkout
                 </button>
@@ -161,3 +196,28 @@ const Header = () => {
   );
 };
 export default Header;
+
+// list: []
+
+// total: 100
+
+// limjt: 4
+
+// pages: 100 / 4 = 25
+
+// page: 0
+
+// const start = limit * page
+// const end = limit * page + limit
+// const data = list.slice(start, end)
+
+// next: page + 1
+
+// prev: page - 1
+
+// select number => page = number - 1
+// // 0 => slice(limit* page, limit * page + limit)
+// // 4 * 0 = 0, 4 * 0 + 4 = 4
+// // 1 => slice(4, 8)
+// // 4 * 1 = 4, 4 * 1 + 4 = 8
+// // 2 => slice (8, 12)

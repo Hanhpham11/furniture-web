@@ -46,7 +46,7 @@ const Contact2 = () => {
           <div className="flex flex-row gap-[30px]">
             <img
               src="/images/clock-fill.png"
-              className="w-[22px] h-[27.6px]"
+              className="w-[22px] h-[22px]"
             ></img>
             <div className="flex flex-col">
               <p className="leading-[36px] text-[24px]">

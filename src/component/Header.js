@@ -152,7 +152,7 @@ const Header = () => {
             </div>
           </div>
           <div
-            className="fixed inset-0 bg-black bg-opacity-40 z-[5]"
+            className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
             onClick={() => setShow(false)}
           />
         </>

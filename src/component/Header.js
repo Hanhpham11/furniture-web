@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { useShopContext1 } from './ShopContext1';
 import { useState } from 'react';
 import { groupBy, keys } from 'ramda';
+
 const Header = () => {
   const [show, setShow] = useState(false);
   const { cart = [] } = useShopContext1();
@@ -30,7 +31,7 @@ const Header = () => {
   const Sub = 0;
   return (
     <div>
-      <div className="w-full h-[100px] bg-white pl-[54px] fixed top-0 left-0 right-0 z-10">
+      <div className="w-full font-sans h-[100px] bg-white pl-[54px] fixed top-0 left-0 right-0 z-10">
         <div className="flex flex-row  gap-[158px]  ">
           <div className=" logo flex flex-row gap-[5px] items-center h-[100px]">
             <img
@@ -95,6 +96,10 @@ const Header = () => {
                 </p>
               </div>
             </div>
+            {/* <div className="flex">
+              <button>EN</button>
+              <button>Vn</button>
+            </div> */}
           </div>
         </div>
       </div>
@@ -196,28 +201,3 @@ const Header = () => {
   );
 };
 export default Header;
-
-// list: []
-
-// total: 100
-
-// limjt: 4
-
-// pages: 100 / 4 = 25
-
-// page: 0
-
-// const start = limit * page
-// const end = limit * page + limit
-// const data = list.slice(start, end)
-
-// next: page + 1
-
-// prev: page - 1
-
-// select number => page = number - 1
-// // 0 => slice(limit* page, limit * page + limit)
-// // 4 * 0 = 0, 4 * 0 + 4 = 4
-// // 1 => slice(4, 8)
-// // 4 * 1 = 4, 4 * 1 + 4 = 8
-// // 2 => slice (8, 12)

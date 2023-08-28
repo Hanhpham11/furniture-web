@@ -17,7 +17,7 @@ function OurProducts() {
             order: ['id DESC'],
           },
         },
-      }
+      },
     );
     if (response.status === 200) {
       console.log(response);
@@ -31,9 +31,18 @@ function OurProducts() {
   useEffect(() => {
     getData();
   }, []);
-  const showProduct = items.splice(8, 9);
+  const showProduct = items.splice(8, 50);
+  //format price
+  const formatter = new Intl.NumberFormat(
+    'en-US',
+    {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    },
+  );
   return (
-    <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px]  ">
+    <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px] font-sans ">
       <div className="flex flex-col gap-[32px] items-center ">
         <h4 className="leading-[48px] text-[40px] text-black text-center">
           OUR PRODUCTS
@@ -70,7 +79,7 @@ function OurProducts() {
                 {item.name}
               </p>
               <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
-                {item.price}
+                {formatter.format(item.price)}
               </p>
             </div>
           ))}

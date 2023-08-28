@@ -1,7 +1,7 @@
 import React from 'react';
 const Footer = () => {
   return (
-    <div className="w-full h-[505px] border-slate-300 pt-[48px] px-[100px] border-solid border-t-2 flex flex-col gap-12 mt-[30px] ">
+    <div className="w-full font-sans h-[505px] border-slate-300 pt-[48px] px-[100px] border-solid border-t-2 flex flex-col gap-12 mt-[30px] ">
       <div className="flex flex-row gap-[138px]">
         <div className="flex flex-col gap-[50px] w-[285px]">
           <h1 className="leading-[36px] text-[24px] text-black">

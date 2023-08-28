@@ -10,7 +10,7 @@ import Contact from './component/Contact Us/Contact';
 import Checkout from './component/Chech out/Checkout';
 import { ShopProvider1 } from './component/ShopContext1';
 import Details from './DetailsProducts/Details';
-
+import About from './component/About/About';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -31,6 +31,10 @@ const router = createBrowserRouter([
   {
     path: '/detail/:id',
     element: <Details />,
+  },
+  {
+    path: '/About',
+    element: <About />,
   },
 ]);
 

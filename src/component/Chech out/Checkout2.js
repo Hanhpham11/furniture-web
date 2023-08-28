@@ -7,6 +7,13 @@ const Checkout2 = () => {
   console.log(111, result);
 
   const carts = keys(result);
+  const Tota = cart.reduce(
+    (accumulator, current) =>
+      Math.floor(
+        accumulator + Number(current.price)
+      ),
+    0
+  );
   return (
     <div className="w-full h-[1829px] bg-white pt-[63px] pl-[100px] pr-[98px] flex flex-row gap-[26px]">
       <div className="flex flex-col w-[608px] h-[1714px] pt-[35px] pl-[74px]">
@@ -95,13 +102,17 @@ const Checkout2 = () => {
           <p className="leading-[24px] text-[16px] text-black">
             Subtotal
           </p>
-          <p className="leading-[24px] text-[16px] text-black "></p>
+          <p className="leading-[24px] text-[16px] text-black ">
+            {Tota}
+          </p>
         </div>
         <div className="flex flex-row mt-[16px] justify-between ">
           <p className="leading-[24px] text-[16px] text-black mt-[6px]">
             Total
           </p>
-          <p className="leading-[36px] text-[24px] text-[#B88E2F] "></p>
+          <p className="leading-[36px] text-[24px] text-[#B88E2F] ">
+            {Tota}
+          </p>
         </div>
         <div className="w-full h-[1px] bg-[#D9D9D9] mt-[39.5px]"></div>
         <div className="flex flex-row gap-[15px] mt-[22.5px] items-center">

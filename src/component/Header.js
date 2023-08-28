@@ -7,28 +7,29 @@ import { groupBy, keys } from 'ramda';
 
 const Header = () => {
   const [show, setShow] = useState(false);
-  const { cart = [] } = useShopContext1();
+  const { cart = [], setCart } =
+    useShopContext1();
   const result = groupBy(({ id }) => id)(cart);
-  console.log(111, result);
 
   const carts = keys(result);
 
-  // const Delete = (dele) => {
-  //   const UnDelete = carts.findIndex(
-  //     (item) => item === '1'
-  //   );
+  const onDeleteProduct = (targetId) => {
+    const newCarts = cart.filter(
+      (item) => item.id !== targetId,
+    );
 
-  //   cart.splice(UnDelete, 1);
-  // };
-  const Delete = (dele) => {
-    carts.splice(carts.indexOf(dele), 1);
+    setCart(newCarts);
   };
   console.log('hi', carts);
-  // cart.map((item) => {
-  //   const Sub = 0;
-  //   return (Sub = Sub + item.price);
-  // });
-  const Sub = 0;
+  const Tota = cart.reduce(
+    (accumulator, current) =>
+      Math.floor(
+        accumulator + Number(current.price),
+      ),
+    0,
+  );
+  console.log(current.price);
+
   return (
     <div>
       <div className="w-full font-sans h-[100px] bg-white pl-[54px] fixed top-0 left-0 right-0 z-10">
@@ -50,7 +51,7 @@ const Header = () => {
             <Link to={'/shop'}>
               <p>Shop</p>
             </Link>
-            <Link to={'/shop'}>
+            <Link to={'/About'}>
               <p>About</p>
             </Link>
             <Link to={'/ContactUs'}>
@@ -150,7 +151,7 @@ const Header = () => {
                         </div>
                         <img
                           onClick={() =>
-                            Delete(key)
+                            onDeleteProduct(key)
                           }
                           src="/images/Vector1.png"
                           className="w-[20px] h-[20px]"
@@ -165,13 +166,7 @@ const Header = () => {
                   Subtotal
                 </p>
                 <p className="leading-[24px] text-[16px] text-[#B88E2F]">
-                  {/* {cart.map((item) => {
-                    {
-                      return (
-                        cart[item].price + Sub
-                      );
-                    }
-                  })} */}
+                  {Tota}
                 </p>
               </div>
             </div>

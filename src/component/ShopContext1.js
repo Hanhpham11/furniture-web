@@ -18,5 +18,13 @@ const useShopContext1 = () => {
   const shopContext = useContext(ShopContext1);
   return shopContext;
 };
-
-export { ShopProvider1, useShopContext1 };
+const formatter = new Intl.NumberFormat('en-US', {
+  style: 'currency',
+  currency: 'USD',
+  minimumFractionDigits: 2,
+});
+export {
+  ShopProvider1,
+  useShopContext1,
+  formatter,
+};

@@ -20,7 +20,16 @@ const Header = () => {
 
     setCart(newCarts);
   };
-  console.log('hi', carts);
+  //format price
+  const formatter = new Intl.NumberFormat(
+    'en-US',
+    {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    },
+  );
+
   const Tota = cart.reduce(
     (accumulator, current) =>
       Math.floor(
@@ -28,11 +37,11 @@ const Header = () => {
       ),
     0,
   );
-  console.log(current.price);
+  // console.log(current.price);
 
   return (
     <div>
-      <div className="w-full font-sans h-[100px] bg-white pl-[54px] fixed top-0 left-0 right-0 z-10">
+      <div className="w-full font-sans h-[100px] bg-white pl-[54px]  top-0 left-0 right-0 z-10">
         <div className="flex flex-row  gap-[158px]  ">
           <div className=" logo flex flex-row gap-[5px] items-center h-[100px]">
             <img
@@ -83,6 +92,7 @@ const Header = () => {
                   className="w-[28px] h-[28px] "
                   data-toggle="collapse"
                   data-target="#Number1"
+                  alt=""
                 ></img>
                 <p
                   style={{
@@ -97,10 +107,6 @@ const Header = () => {
                 </p>
               </div>
             </div>
-            {/* <div className="flex">
-              <button>EN</button>
-              <button>Vn</button>
-            </div> */}
           </div>
         </div>
       </div>
@@ -117,6 +123,7 @@ const Header = () => {
               <img
                 src="/image/Group.png"
                 className="w-[16.625px] h-[19px]"
+                alt=""
               />
             </div>
             <div className="w-[287px] h-[1px] bg-black"></div>
@@ -129,6 +136,7 @@ const Header = () => {
                         <img
                           src={result[key][0].url}
                           className="w-[111px] h-[90px] rounded"
+                          alt=""
                         />
                         <div className="flex flex-col gap-[11px] mt-[17px]">
                           <p className="leading-[24px] text-[16px] text-black">
@@ -142,10 +150,10 @@ const Header = () => {
                               X
                             </p>
                             <p className="leading-[24px] text-[16px] text-[#B88E2F]">
-                              {
+                              {formatter.format(
                                 result[key][0]
-                                  .price
-                              }
+                                  .price,
+                              )}
                             </p>
                           </div>
                         </div>
@@ -155,6 +163,7 @@ const Header = () => {
                           }
                           src="/images/Vector1.png"
                           className="w-[20px] h-[20px]"
+                          alt=""
                         />
                       </div>
                     )}
@@ -166,7 +175,7 @@ const Header = () => {
                   Subtotal
                 </p>
                 <p className="leading-[24px] text-[16px] text-[#B88E2F]">
-                  {Tota}
+                  {formatter.format(Tota)}
                 </p>
               </div>
             </div>

@@ -5,7 +5,10 @@ import React, {
 } from 'react';
 import '../css/Product.css';
 import { Link } from 'react-router-dom';
-import { useShopContext1 } from '../component/ShopContext1';
+import {
+  formatter,
+  useShopContext1,
+} from '../component/ShopContext1';
 function OurProducts() {
   const [items, setItems] = useState([]);
   const getData = async () => {
@@ -32,15 +35,7 @@ function OurProducts() {
     getData();
   }, []);
   const showProduct = items.splice(8, 50);
-  //format price
-  const formatter = new Intl.NumberFormat(
-    'en-US',
-    {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    },
-  );
+
   return (
     <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px] font-sans ">
       <div className="flex flex-col gap-[32px] items-center ">

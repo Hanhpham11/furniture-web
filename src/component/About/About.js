@@ -3,6 +3,7 @@ import Header from '../Header';
 import Footer from '../Footer';
 import About1 from './About1';
 import About2 from './About2';
+
 const About = () => {
   return (
     <div>

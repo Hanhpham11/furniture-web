@@ -31,7 +31,7 @@ function OurProducts() {
   useEffect(() => {
     getData();
   }, []);
-  const showProduct = items.splice(8, 9);
+  const showProduct = items.splice(8, 50);
   return (
     <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px]  ">
       <div className="flex flex-col gap-[32px] items-center ">

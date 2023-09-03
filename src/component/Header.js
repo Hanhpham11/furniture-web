@@ -2,11 +2,23 @@ import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 import { useShopContext1 } from './ShopContext1';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { groupBy, keys } from 'ramda';
 import { current } from '@reduxjs/toolkit';
+import axios from 'axios';
+import SearchNow from './SearchNow';
 
 const Header = () => {
+  const [keyword, setKeyword] = useState('');
+  function handleInput(e) {
+    setKeyword(e.target.value);
+  }
+  async function handleSearch() {
+    const { data } = await axios.get(
+      `https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure?q=${keyword}`
+    );
+    console.log(data);
+  }
   const [show, setShow] = useState(false);
   const { cart = [], setCart } =
     useShopContext1();
@@ -60,22 +72,8 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="flex flex-row gap-[45px] items-center h-[100px] ">
-            <img
-              alt=""
-              src="/images/mdi_account-alert-outline.png"
-              className="w-[28px] h-[28px] "
-            ></img>
-            <img
-              alt=""
-              src="/images/akar-icons_search.png"
-              className="w-[28px] h-[28px] "
-            ></img>
-            <img
-              alt=""
-              src="/images/akar-icons_heart.png"
-              className="w-[28px] h-[28px] "
-            ></img>
+          <div className="flex flex-row gap-[30px] ml-[-50px] items-center h-[100px] ">
+            <SearchNow />
             <div className="unos flex flex-col shadow-2xl gap-10px  shadow-gray-500/50">
               <div className="flex flex-row">
                 <img
@@ -159,10 +157,26 @@ const Header = () => {
               ))}
 
               <div className="flex flex-row gap-[101px] mt-[253px]">
-                <p className="leading-[24px] text-[16px] text-black">
+                <p
+                  style={{
+                    color:
+                      Tota !== 0
+                        ? 'black'
+                        : 'white',
+                  }}
+                  className="leading-[24px] text-[16px] text-black"
+                >
                   Subtotal
                 </p>
-                <p className="leading-[24px] text-[16px] text-[#B88E2F]">
+                <p
+                  style={{
+                    color:
+                      Tota !== 0
+                        ? 'black'
+                        : 'white',
+                  }}
+                  className="leading-[24px] text-[16px] "
+                >
                   {Tota}
                 </p>
               </div>

@@ -7,7 +7,7 @@ import './Details.css';
 import DetailsProduct from './DetailsProduct';
 function Details() {
   return (
-    <div>
+    <div className="flex flex-col">
       <Header />
       <DetailsProduct />
       <Footer />

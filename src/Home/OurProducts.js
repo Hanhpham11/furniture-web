@@ -5,7 +5,10 @@ import React, {
 } from 'react';
 import '../css/Product.css';
 import { Link } from 'react-router-dom';
-import { useShopContext1 } from '../component/ShopContext1';
+import {
+  formatter,
+  useShopContext1,
+} from '../component/ShopContext1';
 function OurProducts() {
   const [items, setItems] = useState([]);
   const getData = async () => {
@@ -17,7 +20,7 @@ function OurProducts() {
             order: ['id DESC'],
           },
         },
-      }
+      },
     );
     if (response.status === 200) {
       console.log(response);
@@ -32,8 +35,12 @@ function OurProducts() {
     getData();
   }, []);
   const showProduct = items.splice(8, 50);
+<<<<<<< HEAD
+=======
+
+>>>>>>> ba4975191ebec591e7567acfaf0ddc77f7dc8182
   return (
-    <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px]  ">
+    <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px] font-sans ">
       <div className="flex flex-col gap-[32px] items-center ">
         <h4 className="leading-[48px] text-[40px] text-black text-center">
           OUR PRODUCTS
@@ -70,7 +77,7 @@ function OurProducts() {
                 {item.name}
               </p>
               <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
-                {item.price}
+                {formatter.format(item.price)}
               </p>
             </div>
           ))}

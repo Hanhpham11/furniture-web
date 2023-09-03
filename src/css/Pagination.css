@@ -1,0 +1,69 @@
+.pageNumbers {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin: 30px;
+  padding: 0;
+}
+
+.pageNumbers li {
+  padding: 8px 12px;
+  margin: 0 4px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  background-color: #f9f1e7;
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.pageNumbers li.active {
+  background: var(--primary, #b88e2f);
+  border-radius: 10px;
+  align-items: center;
+  color: #000;
+}
+
+.pageNumbers li button {
+  background-color: transparent;
+  border: none;
+  color: #000;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition:
+    background-color 0.3s,
+    color 0.3s;
+  border-radius: 10px;
+}
+
+.pageNumbers li button:hover {
+  background-color: #f9f1e7;
+  color: #000;
+}
+
+.pageNumbers li button:focus {
+  outline: none;
+}
+
+.item {
+  position: relative;
+  color: white;
+  display: inline-block;
+}
+.item:hover {
+  .add {
+    display: block;
+  }
+}
+.card {
+  background: var(--color-light-bg, #f4f5f7);
+  width: 285px;
+}
+.card p,
+span {
+  color: var(--color-gray-1, #3a3a3a);
+  font-size: 20px;
+}

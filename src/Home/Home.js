@@ -9,7 +9,7 @@ import OurProducts from './OurProducts';
 
 function Home() {
   return (
-    <div>
+    <div className="font-sans">
       <Header />
       <Banner />
       <Introduce />

@@ -4,9 +4,12 @@ import { Link } from 'react-router-dom';
 import { useShopContext1 } from './ShopContext1';
 import { useState, useEffect } from 'react';
 import { groupBy, keys } from 'ramda';
+<<<<<<< HEAD
 import { current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import SearchNow from './SearchNow';
+=======
+>>>>>>> ba4975191ebec591e7567acfaf0ddc77f7dc8182
 
 const Header = () => {
   const [keyword, setKeyword] = useState('');
@@ -28,24 +31,33 @@ const Header = () => {
 
   const onDeleteProduct = (targetId) => {
     const newCarts = cart.filter(
-      (item) => item.id !== targetId
+      (item) => item.id !== targetId,
     );
 
     setCart(newCarts);
   };
-  console.log('hi', carts);
+  //format price
+  const formatter = new Intl.NumberFormat(
+    'en-US',
+    {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+    },
+  );
+
   const Tota = cart.reduce(
     (accumulator, current) =>
       Math.floor(
-        accumulator + Number(current.price)
+        accumulator + Number(current.price),
       ),
-    0
+    0,
   );
-  console.log(current.price);
+  // console.log(current.price);
 
   return (
     <div>
-      <div className="w-full h-[100px] bg-white pl-[54px] fixed top-0 left-0 right-0 z-10">
+      <div className="w-full font-sans h-[100px] bg-white pl-[54px]  top-0 left-0 right-0 z-10">
         <div className="flex flex-row  gap-[158px]  ">
           <div className=" logo flex flex-row gap-[5px] items-center h-[100px]">
             <img
@@ -82,6 +94,7 @@ const Header = () => {
                   className="w-[28px] h-[28px] "
                   data-toggle="collapse"
                   data-target="#Number1"
+                  alt=""
                 ></img>
                 <p
                   style={{
@@ -112,6 +125,7 @@ const Header = () => {
               <img
                 src="/image/Group.png"
                 className="w-[16.625px] h-[19px]"
+                alt=""
               />
             </div>
             <div className="w-[287px] h-[1px] bg-black"></div>
@@ -124,6 +138,7 @@ const Header = () => {
                         <img
                           src={result[key][0].url}
                           className="w-[111px] h-[90px] rounded"
+                          alt=""
                         />
                         <div className="flex flex-col gap-[11px] mt-[17px]">
                           <p className="leading-[24px] text-[16px] text-black">
@@ -137,10 +152,10 @@ const Header = () => {
                               X
                             </p>
                             <p className="leading-[24px] text-[16px] text-[#B88E2F]">
-                              {
+                              {formatter.format(
                                 result[key][0]
-                                  .price
-                              }
+                                  .price,
+                              )}
                             </p>
                           </div>
                         </div>
@@ -150,6 +165,7 @@ const Header = () => {
                           }
                           src="/images/Vector1.png"
                           className="w-[20px] h-[20px]"
+                          alt=""
                         />
                       </div>
                     )}
@@ -168,6 +184,7 @@ const Header = () => {
                 >
                   Subtotal
                 </p>
+<<<<<<< HEAD
                 <p
                   style={{
                     color:
@@ -178,6 +195,10 @@ const Header = () => {
                   className="leading-[24px] text-[16px] "
                 >
                   {Tota}
+=======
+                <p className="leading-[24px] text-[16px] text-[#B88E2F]">
+                  {formatter.format(Tota)}
+>>>>>>> ba4975191ebec591e7567acfaf0ddc77f7dc8182
                 </p>
               </div>
             </div>
@@ -198,7 +219,7 @@ const Header = () => {
             </div>
           </div>
           <div
-            className="fixed inset-0 bg-black bg-opacity-40 z-[5]"
+            className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
             onClick={() => setShow(false)}
           />
         </>
@@ -207,28 +228,3 @@ const Header = () => {
   );
 };
 export default Header;
-
-// list: []
-
-// total: 100
-
-// limjt: 4
-
-// pages: 100 / 4 = 25
-
-// page: 0
-
-// const start = limit * page
-// const end = limit * page + limit
-// const data = list.slice(start, end)
-
-// next: page + 1
-
-// prev: page - 1
-
-// select number => page = number - 1
-// // 0 => slice(limit* page, limit * page + limit)
-// // 4 * 0 = 0, 4 * 0 + 4 = 4
-// // 1 => slice(4, 8)
-// // 4 * 1 = 4, 4 * 1 + 4 = 8
-// // 2 => slice (8, 12)

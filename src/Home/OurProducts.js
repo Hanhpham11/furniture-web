@@ -65,16 +65,19 @@ function OurProducts() {
                   </button>
                 </div>
               </div>
-
-              <p className=" ml-[16px] mt-[8px] leading-[28.8px] text-[24px] text-black">
-                {item.type}
-              </p>
-              <p className=" ml-[16px] leading-[24px] text-[16px] text-[#898989]">
-                {item.name}
-              </p>
-              <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
-                {formatter.format(item.price)}
-              </p>
+              <Link to={'/detail/' + item.id}>
+                <div>
+                  <p className=" ml-[16px] mt-[8px] leading-[28.8px] text-[24px] text-black">
+                    {item.type}
+                  </p>
+                  <p className=" ml-[16px] leading-[24px] text-[16px] text-[#898989]">
+                    {item.name}
+                  </p>
+                  <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
+                    {formatter.format(item.price)}
+                  </p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>

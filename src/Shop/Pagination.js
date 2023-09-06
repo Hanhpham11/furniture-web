@@ -40,7 +40,8 @@ function Pagination() {
   const pages = [];
   for (
     let i = 1;
-    i <= Math.ceil(items.length / itemsPerPage);
+    i <=
+    Math.ceil(search(data).length / itemsPerPage);
     i++
   ) {
     pages.push(i);
@@ -159,7 +160,7 @@ function Pagination() {
   const displayData = (data) => {
     return (
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
-        {search(data).map((item, index) => (
+        {data.map((item, index) => (
           <div
             key={index}
             className=" card h-[440px]"
@@ -280,10 +281,7 @@ function Pagination() {
               className="custom-select"
               aria-label="Filter "
             >
-              <option
-                value="All"
-                selected="selected"
-              >
+              <option value="All">
                 Filter By type
               </option>
               <option value="Chair">Chair</option>

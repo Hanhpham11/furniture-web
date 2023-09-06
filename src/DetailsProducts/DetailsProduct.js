@@ -6,6 +6,13 @@ import { useEffect, useState } from 'react';
 import { formatter } from '../component/ShopContext1';
 import './Details.css';
 function DetailsProduct() {
+  const [plus, setPlus] = useState(1);
+  const OnPlus = () => {
+    setPlus(plus + 1);
+  };
+  const OnDivison = () => {
+    setPlus(plus - 1);
+  };
   let { id } = useParams();
   const [detail, setDetail] = useState({});
   const getDetail = async () => {
@@ -85,21 +92,150 @@ function DetailsProduct() {
           <span className=" text-[24px] text-[#9F9F9F]">
             {formatter.format(detail.price)}
           </span>
-          <p className="text-[13px] mt-[30px] max-w-xs">
+          <p className="text-[13px]  max-w-xs">
             {detail.description}
           </p>
-          <p>Size</p>
-          <div className="size flex gap-[15px]">
-            <li>
-              <button>M</button>
-            </li>
-            <li>
-              <button>L</button>
-            </li>
-            <li>
-              <button>XL</button>
-            </li>
+          <div className="flex flex-row gap-[6px]">
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./image/half star.png"
+              className="w-[20px] h-[20px]"
+            />
+            <div className="ml-[12px] w-[1px] h-[30px] bg-black"></div>
+            <p className="ml-[16px] leading-[20px] text-[13px] text-[#9F9F9F]"></p>
           </div>
+          <p className=" leading-[20px] text-[13px] text-black ">
+            Setting the bar as one of the loudest
+            speakers in its class, the Kilburn is
+            a compact, stout-hearted hero with a
+            well-balanced audio which boasts a
+            clear midrange and extended highs for
+            a sound.
+          </p>
+
+          <div className="mt-[12px] flex flex-row gap-[24px]">
+            <button className="leading-[20px] text-[13px]  w-[30px] h-[30px] bg-[#F9F1E7] text-center rounded-[5px]">
+              L
+            </button>
+            <button className="leading-[20px] text-[13px]  w-[30px] h-[30px] bg-[#F9F1E7] text-center  rounded-[5px]">
+              XL
+            </button>
+            <button className="leading-[20px] text-[13px]  w-[30px] h-[30px] bg-[#F9F1E7] text-center  rounded-[5px]">
+              XS
+            </button>
+          </div>
+          <div className="mt-[18px] flex flex-row gap-[16px]">
+            <button className="leading-[20px] text-[13px]  w-[30px] h-[30px] bg-[#816DFA] text-center  rounded-full"></button>
+            <button className="leading-[20px] text-[13px]  w-[30px] h-[30px] bg-black text-center  rounded-full"></button>
+            <button className="leading-[20px] text-[13px]  w-[30px] h-[30px] bg-[#B88E2F] text-center  rounded-full"></button>
+          </div>
+          <div className="mt-[32px] flex flex-row gap-[18px]">
+            <div className="flex flex-row gap-[30px] pl-[15px]  w-[123px] h-[64px] border border-solid rounded-[15px] items-center">
+              <p
+                className="leading-[24px] text-[16px] "
+                onClick={OnDivison}
+              >
+                -
+              </p>
+              <p className="leading-[24px] text-[16px]">
+                {plus}
+              </p>
+              <p
+                className="leading-[24px] text-[16px]"
+                onClick={OnPlus}
+              >
+                +
+              </p>
+            </div>
+            <div className=" pl-[48px]  w-[215px] h-[64px] border border-solid rounded-[15px]  rounded-[15px]">
+              <p className="leading-[30px] mt-[17px] text-[20px]">
+                Add To Cart
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="w-full h-[744px] pt-[48px] px-[50px] flex flex-col  border-t-2 ">
+        <div className="flex flex-row gap-[52px] justify-center  ">
+          <h1 className="leading-[36px] text-[24px] text-black">
+            Description
+          </h1>
+          <p className="leading-[36px] text-[24px] text-[#9F9F9F]">
+            Additional Information
+          </p>
+          <p className="leading-[36px] text-[24px] text-[#9F9F9F]">
+            Reviews [5]
+          </p>
+        </div>
+        <div className="w-[1026px] h-[48px] mt-[37px] ml-[108px]">
+          {' '}
+          <p className="leading-[24px] text-[16px] text-[#9F9F9F]  ">
+            Embodying the raw, wayward spirit of
+            rock ‘n’ roll, the Kilburn portable
+            active stereo speaker takes the
+            unmistakable look and sound of
+            Marshall, unplugs the chords, and
+            takes the show on the road.
+          </p>
+        </div>
+        <div className="w-[1026px] h-[96px] mt-[30px] ml-[108px]">
+          <p className="leading-[24px] text-[16px] text-[#9F9F9F]  ">
+            Weighing in under 7 pounds, the
+            Kilburn is a lightweight piece of
+            vintage styled engineering. Setting
+            the bar as one of the loudest speakers
+            in its class, the Kilburn is a
+            compact, stout-hearted hero with a
+            well-balanced audio which boasts a
+            clear midrange and extended highs for
+            a sound that is both articulate and
+            pronounced. The analogue knobs allow
+            you to fine tune the controls to your
+            personal preferences while the
+            guitar-influenced leather strap
+            enables easy and stylish travel.
+          </p>
+        </div>
+
+        <div className="flex flex-row gap-[20px] mt-[36px] justify-around ">
+          {detail && (
+            <img
+              alt=""
+              src={detail.url}
+              style={{
+                width: 535,
+                height: 300,
+              }}
+              className="rounded-[30px]"
+            />
+          )}
+
+          {detail && (
+            <img
+              alt=""
+              src={detail.url}
+              style={{
+                width: 535,
+                height: 300,
+              }}
+              className="rounded-[30px]"
+            />
+          )}
         </div>
       </div>
     </div>

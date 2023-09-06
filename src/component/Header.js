@@ -4,12 +4,9 @@ import { Link } from 'react-router-dom';
 import { useShopContext1 } from './ShopContext1';
 import { useState, useEffect } from 'react';
 import { groupBy, keys } from 'ramda';
-<<<<<<< HEAD
 import { current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import SearchNow from './SearchNow';
-=======
->>>>>>> ba4975191ebec591e7567acfaf0ddc77f7dc8182
 
 const Header = () => {
   const [keyword, setKeyword] = useState('');
@@ -18,7 +15,7 @@ const Header = () => {
   }
   async function handleSearch() {
     const { data } = await axios.get(
-      `https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure?q=${keyword}`
+      `https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure?q=${keyword}`,
     );
     console.log(data);
   }
@@ -113,7 +110,7 @@ const Header = () => {
         </div>
       </div>
       {show && (
-        <>
+        <div>
           <div
             id="Number1"
             className="dos w-[417px] pb-[28px] flex flex-col pl-[30px] pt-[28px] overflow-y-auto fixed right-0 top-[100px] bottom-0 z-10"
@@ -184,7 +181,6 @@ const Header = () => {
                 >
                   Subtotal
                 </p>
-<<<<<<< HEAD
                 <p
                   style={{
                     color:
@@ -193,12 +189,10 @@ const Header = () => {
                         : 'white',
                   }}
                   className="leading-[24px] text-[16px] "
-                >
-                  {Tota}
-=======
+                />
+                {Tota}
                 <p className="leading-[24px] text-[16px] text-[#B88E2F]">
                   {formatter.format(Tota)}
->>>>>>> ba4975191ebec591e7567acfaf0ddc77f7dc8182
                 </p>
               </div>
             </div>
@@ -222,7 +216,7 @@ const Header = () => {
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
             onClick={() => setShow(false)}
           />
-        </>
+        </div>
       )}
     </div>
   );

@@ -35,10 +35,6 @@ function OurProducts() {
     getData();
   }, []);
   const showProduct = items.splice(8, 50);
-<<<<<<< HEAD
-=======
-
->>>>>>> ba4975191ebec591e7567acfaf0ddc77f7dc8182
   return (
     <div className="w-full bg-white pt-[30px] px-[102px] pb-[69px] font-sans ">
       <div className="flex flex-col gap-[32px] items-center ">

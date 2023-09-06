@@ -155,10 +155,11 @@ function Pagination() {
   const Add1 = (hello) => {
     setCart([hello, ...cart]);
   };
-  const displayData = (items) => {
+  const data = Object.values(items);
+  const displayData = (data) => {
     return (
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
-        {search(items).map((item, index) => (
+        {search(data).map((item, index) => (
           <div
             key={index}
             className=" card h-[440px]"
@@ -199,7 +200,7 @@ function Pagination() {
       </div>
     );
   };
-  const data = Object.values(items);
+
   if (error) {
     return (
       <p>
@@ -279,7 +280,10 @@ function Pagination() {
               className="custom-select"
               aria-label="Filter "
             >
-              <option value="All">
+              <option
+                value="All"
+                selected="selected"
+              >
                 Filter By type
               </option>
               <option value="Chair">Chair</option>

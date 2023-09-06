@@ -132,7 +132,7 @@ function Product() {
           </div>
           <div className="flex flex-col gap-[2px] items-start">
             <p>Free Shippingn</p>
-            <span>Order over 150,000 đ </span>
+            <span>Order over 150,000 </span>
           </div>
         </div>
         <div className="flex items-center gap-[10px] justify-center">

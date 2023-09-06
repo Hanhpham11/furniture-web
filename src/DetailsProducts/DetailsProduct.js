@@ -2,12 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-<<<<<<< HEAD
 
-=======
 import { formatter } from '../component/ShopContext1';
 import './Details.css';
->>>>>>> ba4975191ebec591e7567acfaf0ddc77f7dc8182
 function DetailsProduct() {
   let { id } = useParams();
   const [detail, setDetail] = useState({});

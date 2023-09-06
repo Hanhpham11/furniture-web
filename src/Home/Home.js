@@ -16,6 +16,7 @@ function Home() {
       <OurProducts />
       <Inspirations />
       <Share />
+
       <Footer />
     </div>
   );

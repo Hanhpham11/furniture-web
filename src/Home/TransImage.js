@@ -14,7 +14,7 @@ function Slideshow(list) {
             order: ['id DESC'],
           },
         },
-      }
+      },
     );
     if (response.status === 200) {
       // console.log(response);
@@ -25,7 +25,9 @@ function Slideshow(list) {
   useEffect(() => {
     getData();
   }, []);
-  const getImage = images.splice(4, 8);
+  const getImage = images.filter(
+    (item) => item.name === list.list[0].name,
+  );
   const delay = 2500;
   const [index, setIndex] = React.useState(0);
   const timeoutRef = React.useRef(null);
@@ -41,11 +43,11 @@ function Slideshow(list) {
     timeoutRef.current = setTimeout(
       () =>
         setIndex((prevIndex) =>
-          prevIndex === images.length - 1
+          prevIndex === getImage.length - 1
             ? 0
-            : prevIndex + 1
+            : prevIndex + 1,
         ),
-      delay
+      delay,
     );
 
     return () => {
@@ -63,7 +65,7 @@ function Slideshow(list) {
           }%, 0, 0)`,
         }}
       >
-        {images.map((item, index) => (
+        {getImage.map((item, index) => (
           <div className="slide" key={index}>
             <img
               src={item.image}
@@ -74,7 +76,7 @@ function Slideshow(list) {
       </div>
 
       <div className="slideshowDots ">
-        {images.map((_, idx) => (
+        {getImage.map((_, idx) => (
           <div
             key={idx}
             className={`slideshowDot${

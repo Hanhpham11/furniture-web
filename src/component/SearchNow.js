@@ -101,7 +101,7 @@ function SearchNow() {
           </label>
         </div>
         {show && (
-          <div className="absolute z-5 bg-white card-grid flex flex-col gap-[60px] w-[200px] h-[200px] overflow-y-auto top-[70px]">
+          <div className="absolute z-50 bg-white card-grid flex flex-col gap-[60px] w-[200px] h-[200px] overflow-y-auto top-[70px]">
             {search(data)?.map((item) => (
               <div className="flex flex-row gap-[2px] h-[50px]">
                 <img

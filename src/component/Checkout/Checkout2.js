@@ -1,6 +1,7 @@
 import React from 'react';
 import { groupBy, keys } from 'ramda';
 import { useShopContext1 } from '../ShopContext1';
+import './Chechout2.css';
 const Checkout2 = () => {
   const { cart = [] } = useShopContext1();
   const result = groupBy(({ id }) => id)(cart);
@@ -10,9 +11,9 @@ const Checkout2 = () => {
   const Tota = cart.reduce(
     (accumulator, current) =>
       Math.floor(
-        accumulator + Number(current.price)
+        accumulator + Number(current.price),
       ),
-    0
+    0,
   );
   return (
     <div className="w-full h-[1829px] bg-white pt-[63px] pl-[100px] pr-[98px] flex flex-row gap-[26px]">
@@ -29,43 +30,48 @@ const Checkout2 = () => {
           </p>
         </div>
         <div className="flex flex-row gap-[31px] mt-[22px]">
-          <input className="w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"></input>
-          <input className="w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"></input>
+          <input
+            type="text"
+            className="pl-[29px] w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"
+          ></input>
+          <input
+            type="text"
+            className="pl-[29px] w-[211px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px]"
+          ></input>
         </div>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Company Name (Optional)
         </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Country / Region
         </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Street address
         </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Town / City
         </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Province
         </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
-        <p className="leading-[24px] text-[16px] text-black mt-[36px]">
-          ZIP code
-        </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Phone
         </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Email address
         </p>
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px] "></input>
 
-        <input className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[58px]"></input>
+        <input
+          placeholder="Additional information"
+          className="w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[58px] pl-[29px]"
+        ></input>
       </div>
       <div className="flex flex-col w-[608px] h-[789px] pt-[87px] pl-[38px] pr-[37px]">
         <div className="flex flex-row justify-between">
@@ -116,7 +122,7 @@ const Checkout2 = () => {
         </div>
         <div className="w-full h-[1px] bg-[#D9D9D9] mt-[39.5px]"></div>
         <div className="flex flex-row gap-[15px] mt-[22.5px] items-center">
-          <button className="rounded-full w-[14px] h-[14px] border border-solid border-black bg-black"></button>
+          <button className=" hiChange rounded-full w-[14px] h-[14px] border border-solid border-black bg-black"></button>
           <p className="leading-[24px] text-[16px] text-black font-[400]">
             Direct Bank Transfer
           </p>
@@ -128,14 +134,9 @@ const Checkout2 = () => {
           be shipped until the funds have cleared
           in our account.
         </p>
-        <div className="flex flex-row gap-[15px] mt-[25px] items-center">
-          <button className="rounded-full w-[14px] h-[14px] border border-solid border-black bg-white"></button>
-          <p className="leading-[24px] text-[16px] text-black font-[400]">
-            Direct Bank Transfer
-          </p>
-        </div>
+
         <div className="flex flex-row gap-[15px] mt-[11px] items-center">
-          <button className="rounded-full w-[14px] h-[14px] border border-solid border-black bg-white"></button>
+          <button className="hiChange rounded-full w-[14px] h-[14px] border border-solid border-black bg-white"></button>
           <p className="leading-[24px] text-[16px] text-black font-[400]">
             Cash On Delivery
           </p>

@@ -1,0 +1,6 @@
+.hiChange {
+  background-color: white;
+}
+.hiChange:focus {
+  background-color: black;
+}

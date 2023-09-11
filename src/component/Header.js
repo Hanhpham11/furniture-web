@@ -48,8 +48,8 @@ const Header = () => {
 
   return (
     <div>
-      <div className="w-full font-sans h-[100px] bg-white pl-[54px]  top-0 left-0 right-0 z-10">
-        <div className="flex flex-row  gap-[158px]  ">
+      <div className="w-full font-sans h-[100px] bg-white pl-[54px]  top-0 left-0 right-0 z-10 fixed">
+        <div className="flex flex-row  gap-[120px]  ">
           <div className=" logo flex flex-row gap-[5px] items-center h-[100px]">
             <img
               src="/logo12.png "
@@ -75,7 +75,7 @@ const Header = () => {
             </Link>
           </div>
 
-          <div className="flex flex-row gap-[30px] ml-[-50px] items-center h-[100px] ">
+          <div className="flex flex-row gap-[20px]  items-center h-[100px] ">
             <SearchNow />
             <div className="unos flex flex-col shadow-2xl gap-10px  shadow-gray-500/50">
               <div className="flex flex-row">
@@ -100,6 +100,9 @@ const Header = () => {
                 </p>
               </div>
             </div>
+            <button className=" rounded-md w-[100px] bg-[#FA8443] text-white">
+              Sign Up
+            </button>
           </div>
         </div>
       </div>
@@ -183,10 +186,8 @@ const Header = () => {
                         : 'white',
                   }}
                   className="leading-[24px] text-[16px] "
-                />
-                {Tota}
-                <p className="leading-[24px] text-[16px] text-[#B88E2F]">
-                  {formatter.format(Tota)}
+                >
+                  {Tota}
                 </p>
               </div>
             </div>

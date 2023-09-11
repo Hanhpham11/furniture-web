@@ -23,16 +23,19 @@ function Inspirations() {
 
   const [add1, setAdd1] = useState(0);
   console.log('Number5', add1);
-  const [list, SetList] = useState([List[add1]]);
+  const [list, setList] = useState([List[add1]]);
 
   const AddButton = () => {
     console.log('HelloLisst', list);
-    const Add2 = add1 + 1;
-    setAdd1(Add2);
-    SetList([List[Add2]]);
-    console.log(list);
+    if (add1 == 2) {
+      setAdd1(add1 - 2);
+      setList([List[add1 - 2]]);
+    } else {
+      setAdd1(add1 + 1);
+      setList([List[add1 + 1]]);
+    }
   };
-  // useEffect(() => {
+
   //   SetList([List[add1]]);
   // }, []);
   return (

@@ -2,12 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import { groupBy, keys } from 'ramda';
 import { formatter } from '../component/ShopContext1';
 import './Details.css';
+import { useShopContext1 } from '../component/ShopContext1';
 function DetailsProduct() {
-  let { id } = useParams();
+  const { cart, setCart } = useShopContext1();
   const [detail, setDetail] = useState({});
+  const Add1 = (hi) => {
+    const Arr1 = new Array(plus).fill(hi);
+    const Arr2 = cart.concat(Arr1);
+    setCart(Arr2);
+  };
+
+  let { id } = useParams();
+
   const getDetail = async () => {
     const response = await axios.get(
       'https://64d61e33754d3e0f1361a0ec.mockapi.io//products/' +
@@ -21,6 +30,24 @@ function DetailsProduct() {
   useEffect(() => {
     getDetail();
   }, []);
+
+  const [plus, setPlus] = useState(0);
+
+  const OnPlus = () => {
+    if (plus == 10) {
+      setPlus(plus);
+    } else {
+      setPlus(plus + 1);
+    }
+  };
+  const OnDivison = () => {
+    if (plus == 0) {
+      setPlus(plus);
+    } else {
+      setPlus(plus - 1);
+    }
+  };
+
   return (
     <div className="font-sans flex flex-col">
       <div className="flex w-full pl-[99px]gap-[14px] px-[38px] bg-[#F9F1E7] h-[100px] items-center">
@@ -85,20 +112,32 @@ function DetailsProduct() {
           <span className=" text-[24px] text-[#9F9F9F]">
             {formatter.format(detail.price)}
           </span>
-          <p className="text-[13px] mt-[30px] max-w-xs">
+          <p className="text-[13px]  max-w-xs">
             {detail.description}
           </p>
-          <p>Size</p>
-          <div className="size flex gap-[15px]">
-            <li>
-              <button>M</button>
-            </li>
-            <li>
-              <button>L</button>
-            </li>
-            <li>
-              <button>XL</button>
-            </li>
+          <div className="flex flex-row gap-[6px]">
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./images/start.png"
+              className="w-[20px] h-[20px]"
+            />
+            <img
+              src="./image/half star.png"
+              className="w-[20px] h-[20px]"
+            />
+            <div className="ml-[12px] w-[1px] h-[30px] bg-black"></div>
+            <p className="ml-[16px] leading-[20px] text-[13px] text-[#9F9F9F]"></p>
           </div>
           <div>
             {detail &&

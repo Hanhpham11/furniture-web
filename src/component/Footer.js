@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 const Footer = () => {
   const initialState = {
     email: '',
+    password: '',
   };
   const [emai, setEmai] = useState(initialState); // Khởi tạo trạng thái và hàm để cập nhật trạng thái
   useEffect(() => {
@@ -70,12 +71,6 @@ const Footer = () => {
           </a>
         </div>
         <div className="flex flex-col gap-[46px]">
-          {/* <button className="w-[100px] h-[50px] border border-solid border-1px border-black bg-white ">
-            Sign in
-          </button>
-          <button className="w-[100px] h-[50px] border border-solid border-1px border-black bg-white">
-            Sign up
-          </button> */}
           <p className="mt-[9px] leading-[24px] text-[16px] text-gray-500">
             Newsletter
           </p>
@@ -110,17 +105,28 @@ const Footer = () => {
             <p className="text-[25px]">SIGN IN</p>
             <input
               placeholder="Enter your email"
+              name="email"
+              onChange={handleChange}
               className=" pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
             ></input>
             <input
               placeholder="Enter password"
+              type="password"
+              name="password"
+              onChange={handleChange}
               className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
             ></input>
             <input
               placeholder="Enter confirm password"
+              type="password"
+              name="password"
+              onChange={handleChange}
               className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
             ></input>
-            <button className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]">
+            <button
+              onClick={handleSubmit}
+              className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]"
+            >
               Sign in
             </button>
           </div>

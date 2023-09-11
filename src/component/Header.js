@@ -20,6 +20,7 @@ const Header = () => {
     console.log(data);
   }
   const [show, setShow] = useState(false);
+  const [show1, setShow1] = useState(false);
   const { cart = [], setCart } =
     useShopContext1();
   const result = groupBy(({ id }) => id)(cart);
@@ -106,12 +107,41 @@ const Header = () => {
                 </p>
               </div>
             </div>
-            <button className=" rounded-md w-[100px] bg-[#FA8443] text-white">
+            <button
+              className=" rounded-md w-[100px] bg-[#FA8443] text-white"
+              onClick={() => setShow1(!show1)}
+            >
               Sign Up
             </button>
           </div>
         </div>
       </div>
+      {show1 && (
+        <div>
+          <div className=" z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]">
+            <p className="text-[25px]">SIGN UP</p>
+            <input
+              placeholder="Enter your email"
+              name="email"
+              className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
+            ></input>
+            <input
+              placeholder="Enter password"
+              type="password"
+              name="password"
+              className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
+            ></input>
+            <button className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]">
+              Sign up
+            </button>
+          </div>
+          <div
+            className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
+            onClick={() => setShow1(false)}
+          />
+        </div>
+      )}
+
       {show && (
         <div>
           <div

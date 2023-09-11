@@ -2,19 +2,21 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-
+import { groupBy, keys } from 'ramda';
 import { formatter } from '../component/ShopContext1';
 import './Details.css';
+import { useShopContext1 } from '../component/ShopContext1';
 function DetailsProduct() {
-  const [plus, setPlus] = useState(1);
-  const OnPlus = () => {
-    setPlus(plus + 1);
-  };
-  const OnDivison = () => {
-    setPlus(plus - 1);
-  };
-  let { id } = useParams();
+  const { cart, setCart } = useShopContext1();
   const [detail, setDetail] = useState({});
+  const Add1 = (hi) => {
+    const Arr1 = new Array(plus).fill(hi);
+    const Arr2 = cart.concat(Arr1);
+    setCart(Arr2);
+  };
+
+  let { id } = useParams();
+
   const getDetail = async () => {
     const response = await axios.get(
       'https://64d61e33754d3e0f1361a0ec.mockapi.io//products/' +
@@ -28,6 +30,24 @@ function DetailsProduct() {
   useEffect(() => {
     getDetail();
   }, []);
+
+  const [plus, setPlus] = useState(0);
+
+  const OnPlus = () => {
+    if (plus == 10) {
+      setPlus(plus);
+    } else {
+      setPlus(plus + 1);
+    }
+  };
+  const OnDivison = () => {
+    if (plus == 0) {
+      setPlus(plus);
+    } else {
+      setPlus(plus - 1);
+    }
+  };
+
   return (
     <div className="font-sans flex flex-col">
       <div className="flex w-full pl-[99px]gap-[14px] px-[38px] bg-[#F9F1E7] h-[100px] items-center">
@@ -162,11 +182,14 @@ function DetailsProduct() {
                 +
               </p>
             </div>
-            <div className=" pl-[48px]  w-[215px] h-[64px] border border-solid rounded-[15px]  rounded-[15px]">
-              <p className="leading-[30px] mt-[17px] text-[20px]">
+            {detail && (
+              <button
+                onClick={() => Add1(detail)}
+                className="   w-[215px] h-[64px] border bg-white border-solid border-black rounded-[15px] text-center  rounded-[15px]"
+              >
                 Add To Cart
-              </p>
-            </div>
+              </button>
+            )}
           </div>
         </div>
       </div>

@@ -11,7 +11,7 @@ const Checkout = () => {
       <Checkout1 />
       <Checkout2 />
       <Contact3 />
-      <div>aaa</div>
+
       <Footer />
     </div>
   );

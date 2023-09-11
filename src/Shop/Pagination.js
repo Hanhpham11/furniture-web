@@ -20,7 +20,9 @@ function Pagination() {
   const [filterParam, setFilterParam] = useState([
     'All',
   ]);
+  console.log('hiHello', search(items));
   //phan trang
+  console.log('hello', items);
   const [currentPage, setcurrentPage] =
     useState(1);
   const [itemsPerPage, setitemsPerPage] =
@@ -41,7 +43,9 @@ function Pagination() {
   for (
     let i = 1;
     i <=
-    Math.ceil(search(data).length / itemsPerPage);
+    Math.ceil(
+      search(items).length / itemsPerPage,
+    );
     i++
   ) {
     pages.push(i);
@@ -156,11 +160,10 @@ function Pagination() {
   const Add1 = (hello) => {
     setCart([hello, ...cart]);
   };
-  const data = Object.values(items);
-  const displayData = (data) => {
+  const displayData = (items) => {
     return (
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
-        {data.map((item, index) => (
+        {search(items).map((item, index) => (
           <div
             key={index}
             className=" card h-[440px]"
@@ -201,7 +204,7 @@ function Pagination() {
       </div>
     );
   };
-
+  const data = Object.values(items);
   if (error) {
     return (
       <p>
@@ -294,6 +297,7 @@ function Pagination() {
             </select>
           </div>
         </div>
+
         {displayData(pageItems)}
         <ul className="pageNumbers">
           <li>

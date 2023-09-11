@@ -1,7 +1,10 @@
 import React from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
-import { useShopContext1 } from './ShopContext1';
+import {
+  formatter,
+  useShopContext1,
+} from './ShopContext1';
 import { useState, useEffect } from 'react';
 import { groupBy, keys } from 'ramda';
 import { current } from '@reduxjs/toolkit';
@@ -33,15 +36,6 @@ const Header = () => {
 
     setCart(newCarts);
   };
-  //format price
-  const formatter = new Intl.NumberFormat(
-    'en-US',
-    {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-    },
-  );
 
   const Tota = cart.reduce(
     (accumulator, current) =>

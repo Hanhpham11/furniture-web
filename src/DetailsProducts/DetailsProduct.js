@@ -100,6 +100,18 @@ function DetailsProduct() {
               <button>XL</button>
             </li>
           </div>
+          <div>
+            {detail &&
+              detail.map((curColor, index) => {
+                return (
+                  <div>
+                    <button key={index}>
+                      {detail.colors}
+                    </button>
+                  </div>
+                );
+              })}
+          </div>
         </div>
       </div>
     </div>

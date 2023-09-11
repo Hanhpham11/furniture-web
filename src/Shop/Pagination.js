@@ -116,16 +116,10 @@ function Pagination() {
       'https://64d61e33754d3e0f1361a0ec.mockapi.io/products',
     )
       .then((res) => res.json())
-      .then(
-        (json) => {
-          setIsLoaded(true);
-          setItems(json);
-        },
-        (error) => {
-          setIsLoaded(true);
-          setError(error);
-        },
-      );
+      .then((json) => {
+        setIsLoaded(true);
+        setItems(json);
+      });
   }, []);
   function search(items) {
     return items.filter((item) => {
@@ -156,12 +150,12 @@ function Pagination() {
     setCart([hello, ...cart]);
   };
   const data = Object.values(items);
-  const displayData = (data) => {
+  const displayData = (items) => {
     return (
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
-        {search(data).map((item, index) => (
+        {search(items).map((item) => (
           <div
-            key={index}
+            key={item}
             className=" card h-[440px]"
           >
             <div className="item">
@@ -215,7 +209,7 @@ function Pagination() {
       </p>
     );
   } else if (!isLoaded) {
-    return <>loading...</>;
+    return true;
   } else {
     return (
       <div className="w-full">
@@ -268,10 +262,10 @@ function Pagination() {
             <p>Showing 1–16 of 50 results</p>
           </div>
           <p>Show</p>
-          <div className="border border-indigo-600">
+          <div className="border border-indigo-600 ">
             <p>16</p>
           </div>
-          <div className=" flex border border-indigo-600 ">
+          <div className=" flex border border-indigo-600 items-center">
             <p className="px-3">Short by</p>
             <select
               onChange={(e) => {
@@ -280,22 +274,22 @@ function Pagination() {
               className="custom-select"
               aria-label="Filter "
             >
-              <option
-                value="All"
-                selected="selected"
-              >
+              <option value="All">
                 Filter By type
               </option>
+              <option value="Sofa">Sofa</option>
+              <option value="Table">Table</option>
               <option value="Chair">Chair</option>
-              <option value="Fish">Fish</option>
-              <option value="Asia">Asia</option>
-              <option value="Cheese">
-                Cheese
+              <option value="Wardrobe">
+                Wardrobe
               </option>
-              <option value="Car">Car</option>
+              <option value="Cabinet">
+                Cabinet
+              </option>
             </select>
           </div>
         </div>
+
         {displayData(pageItems)}
         <ul className="pageNumbers">
           <li>

@@ -6,116 +6,73 @@ import {
   formatter,
   useShopContext1,
 } from '../component/ShopContext1';
+import { all } from 'axios';
+import { range } from 'ramda';
 
 function Pagination() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [data, setData] = useState([]);
   const [items, setItems] = useState([]);
-  const [q, setQ] = useState('');
-  const [searchParam] = useState([
-    'type',
-    'name',
-    'price',
-  ]);
-  const [filterParam, setFilterParam] = useState([
-    'All',
-  ]);
-  console.log('hiHello', search(items));
-  //phan trang
-  console.log('hello', items);
+
+  // const [q, setQ] = useState('');
+  // const [searchParam] = useState([
+  //   'type',
+  //   'name',
+  //   'price',
+  // ]);
+  const [filterParam, setFilterParam] =
+    useState('All');
   const [currentPage, setcurrentPage] =
     useState(1);
-  const [itemsPerPage, setitemsPerPage] =
-    useState(16);
+  const [itemsPerPage] = useState(16);
 
-  const [pageNumberLimit, setpageNumberLimit] =
-    useState(4);
-  const [
-    maxPageNumberLimit,
-    setmaxPageNumberLimit,
-  ] = useState(4);
-  const [
-    minPageNumberLimit,
-    setminPageNumberLimit,
-  ] = useState(0);
-  // logic for getting total number of pages
-  const pages = [];
-  for (
-    let i = 1;
-    i <=
-    Math.ceil(
-      search(items).length / itemsPerPage,
-    );
-    i++
-  ) {
-    pages.push(i);
-  }
-  // logic for displaying a number of items per page
+  const pageNumber =
+    Math.ceil(items.length / itemsPerPage) + 1;
+
   const indexOfLastItem =
     currentPage * itemsPerPage;
   const indexOfFirstItem =
     indexOfLastItem - itemsPerPage;
-  const pageItems = items.slice(
-    indexOfFirstItem,
-    indexOfLastItem,
-  );
-  const handleClick = (event) => {
-    setcurrentPage(Number(event.target.id));
+
+  const handleDisplayData = () => {
+    const newItems =
+      filterParam === 'All'
+        ? data
+        : data.filter(
+            (p) => p.type === filterParam,
+          );
+
+    setItems(newItems);
   };
 
-  const renderPageNumbers = pages.map(
-    (number) => {
-      if (
-        number < maxPageNumberLimit + 1 &&
-        number > minPageNumberLimit
-      ) {
-        return (
-          <li
-            key={number}
-            id={number}
-            onClick={handleClick}
-            className={
-              currentPage === number
-                ? 'active'
-                : null
-            }
-          >
-            {number}
-          </li>
-        );
-      } else {
-        return null;
-      }
-    },
-  );
-  const handleNextbtn = () => {
-    setcurrentPage(currentPage + 1);
+  useEffect(() => {
+    handleDisplayData();
+  }, [filterParam]);
 
-    if (currentPage + 1 > maxPageNumberLimit) {
-      setmaxPageNumberLimit(
-        maxPageNumberLimit + pageNumberLimit,
-      );
-      setminPageNumberLimit(
-        minPageNumberLimit + pageNumberLimit,
-      );
-    }
+  const handleClick = (targetPage) => {
+    setcurrentPage(targetPage);
   };
 
-  const handlePrevbtn = () => {
-    setcurrentPage(currentPage - 1);
-
-    if (
-      (currentPage - 1) % pageNumberLimit ===
-      0
-    ) {
-      setmaxPageNumberLimit(
-        maxPageNumberLimit - pageNumberLimit,
+  const renderPageNumbers = () =>
+    range(1, pageNumber).map((index) => {
+      return (
+        <li
+          key={index}
+          id={index}
+          onClick={() => handleClick(index)}
+          className={
+            currentPage === index && 'active'
+          }
+        >
+          {index}
+        </li>
       );
-      setminPageNumberLimit(
-        minPageNumberLimit - pageNumberLimit,
-      );
-    }
+    });
+  const handleNextbtn = (number) => {
+    setcurrentPage(currentPage + number);
   };
+
   useEffect(() => {
     fetch(
       'https://64d61e33754d3e0f1361a0ec.mockapi.io/products',
@@ -124,41 +81,24 @@ function Pagination() {
       .then((json) => {
         setIsLoaded(true);
         setItems(json);
+        setData(json);
       });
   }, []);
-  function search(items) {
-    return items.filter((item) => {
-      if (item.type === filterParam) {
-        return searchParam.some((newItem) => {
-          return (
-            item[newItem]
-              .toString()
-              .toLowerCase()
-              .indexOf(q.toLowerCase()) > -1
-          );
-        });
-      } else if (filterParam === 'All') {
-        return searchParam.some((newItem) => {
-          return (
-            item[newItem]
-              .toString()
-              .toLowerCase()
-              .indexOf(q.toLowerCase()) > -1
-          );
-        });
-      }
-    });
-  }
+
   // add to cart
   const { cart, setCart } = useShopContext1();
   const Add1 = (hello) => {
     setCart([hello, ...cart]);
   };
-  const data = Object.values(items);
-  const displayData = (items) => {
+  const displayData = (data) => {
+    const pageItems = data.slice(
+      indexOfFirstItem,
+      indexOfLastItem,
+    );
+
     return (
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
-        {search(items).map((item, index) => (
+        {pageItems.map((item, index) => (
           <div
             key={item}
             className=" card h-[440px]"
@@ -294,32 +234,28 @@ function Pagination() {
           </div>
         </div>
 
-        {displayData(pageItems)}
+        {displayData(items)}
         <ul className="pageNumbers">
           <li>
             <button
-              onClick={handlePrevbtn}
-              disabled={
-                currentPage === pages[0]
-                  ? true
-                  : false
-              }
-              className="w-full"
+              onClick={() => handleNextbtn(-1)}
+              disabled={currentPage === 1}
+              className={`w-full ${
+                currentPage === 1 &&
+                'cursor-not-allowed'
+              }`}
             >
               Previous
             </button>
           </li>
 
-          {renderPageNumbers}
+          {renderPageNumbers()}
 
           <li>
             <button
-              onClick={handleNextbtn}
+              onClick={() => handleNextbtn(1)}
               disabled={
-                currentPage ===
-                pages[pages.length - 1]
-                  ? true
-                  : false
+                currentPage === pageNumber - 1
               }
               className="w-full"
             >

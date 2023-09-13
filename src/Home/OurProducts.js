@@ -23,7 +23,6 @@ function OurProducts() {
       },
     );
     if (response.status === 200) {
-      console.log(response);
       setItems(response.data);
     }
   };

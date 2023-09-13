@@ -10,6 +10,7 @@
     "antd": "^5.8.5",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
+    "formik": "^2.4.4",
     "graphql-request": "^6.1.0",
     "i18next": "^23.4.5",
     "prop-types": "^15.8.1",

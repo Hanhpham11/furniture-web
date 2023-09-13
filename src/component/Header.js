@@ -10,6 +10,22 @@ import { groupBy, keys } from 'ramda';
 import { current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import SearchNow from './SearchNow';
+import { useFormik } from 'formik';
+
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+      values.email,
+    )
+  ) {
+    errors.email = 'Invalid email address';
+  }
+  return errors;
+};
 
 const Header = () => {
   const [keyword, setKeyword] = useState('');
@@ -20,7 +36,7 @@ const Header = () => {
     const { data } = await axios.get(
       `https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure?q=${keyword}`,
     );
-    console.log(data);
+    // console.log(data);
   }
   const [show, setShow] = useState(false);
   const [show1, setShow1] = useState(false);
@@ -45,7 +61,16 @@ const Header = () => {
       ),
     0,
   );
-  // console.log(current.price);
+  // validation email
+  const formik = useFormik({
+    initialValues: {
+      email: ' ',
+    },
+    validate,
+    onSubmit: (values) => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
 
   return (
     <div>
@@ -105,30 +130,72 @@ const Header = () => {
               className=" rounded-md w-[100px] bg-[#FA8443] text-white"
               onClick={() => setShow1(!show1)}
             >
-              Sign Up
+              Sign In
             </button>
           </div>
         </div>
       </div>
       {show1 && (
         <div>
-          <div className=" z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]">
-            <p className="text-[25px]">SIGN UP</p>
-            <input
-              placeholder="Enter your email"
-              name="email"
-              className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-            ></input>
-            <input
-              placeholder="Enter password"
-              type="password"
-              name="password"
-              className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-            ></input>
-            <button className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]">
-              Sign up
-            </button>
-          </div>
+          <form onSubmit={formik.handleSubmit}>
+            <div className=" z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]">
+              {/* <p className="text-[25px]">
+                SIGN IN
+              </p>
+              <input
+                placeholder="Enter your email"
+                name="email"
+                id="email"
+                onChange={formik.handleChange}
+                onBlur={formik.values.email}
+                className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
+              ></input>
+              {formik.touched.email &&
+              formik.errors.email ? (
+                <span>{formik.errors.email}</span>
+              ) : null}
+              <input
+                placeholder="Enter password"
+                type="password"
+                name="password"
+                className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
+              ></input>
+              <button
+                type="submit"
+                className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]"
+              >
+                Sign In
+              </button> */}
+              <p className="text-[25px]">
+                SIGN IN
+              </p>
+              <input
+                type="email"
+                name="email"
+                id="email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.email}
+                placeholder="Enter your email"
+                className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
+              />
+              {formik.touched.email &&
+              formik.errors.email ? (
+                <span>{formik.errors.email}</span>
+              ) : null}
+              <input
+                type="password"
+                name="password"
+                id="password"
+                placeholder="Enter your email"
+                className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
+              />
+              <button type="submit">
+                Submit
+              </button>
+            </div>
+          </form>
+
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
             onClick={() => setShow1(false)}

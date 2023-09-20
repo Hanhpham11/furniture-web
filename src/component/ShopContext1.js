@@ -4,6 +4,7 @@ import React, {
 } from 'react';
 import { useFormik } from 'formik';
 const ShopContext1 = React.createContext();
+
 const ShopProvider1 = ({ children }) => {
   const [cart, setCart] = useState([]);
 
@@ -28,5 +29,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 export {
   ShopProvider1,
   useShopContext1,
+  useShopContext2,
+  ShopProvider2,
   formatter,
 };

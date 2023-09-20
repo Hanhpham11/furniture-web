@@ -41,7 +41,7 @@ function DetailsProduct() {
     }
   };
   const OnDivison = () => {
-    if (plus == 0) {
+    if (plus == 1) {
       setPlus(plus);
     } else {
       setPlus(plus - 1);

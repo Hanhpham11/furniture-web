@@ -3,10 +3,22 @@ import { ReactDOM } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 const Contact2 = () => {
-  const [email, setemail] = useState('');
+  const [email, setEmail] = useState('');
   const [text1, settext1] = useState('');
   const [text2, settext2] = useState('');
   const [text3, settext3] = useState('');
+  const [inputFields, setInputFields] = useState({
+    email: '',
+    text1: '',
+    text2: '',
+    text3: '',
+  });
+  const handleChange = (e) => {
+    setInputFields({
+      ...inputFields,
+      [e.target.name]: e.target.value,
+    });
+  };
   const getData = async () => {
     const response = await axios.get(
       'https://64fe5ad1f8b9eeca9e28ac79.mockapi.io/information/hi/contact',
@@ -107,9 +119,11 @@ const Contact2 = () => {
               placeholder="Abc"
               type="text"
               name="name"
+              value={text1}
               onChange={(e) =>
                 settext1(e.target.value)
               }
+              
             ></input>
             <p className="leading-[24px] text-[16px] mt-[36px]">
               {' '}
@@ -120,9 +134,7 @@ const Contact2 = () => {
               placeholder="Abc@def.com"
               type="email"
               value={email}
-              onChange={(e) =>
-                setemail(e.target.value)
-              }
+              onChange={handleChange}
             ></input>
             <p className="leading-[24px] text-[16px] mt-[36px]">
               {' '}
@@ -132,6 +144,7 @@ const Contact2 = () => {
               className="w-[529px] h-[75px] border rounded-[5px] items-center pl-[29.75px] mt-[22px]"
               placeholder="This is an optional"
               type="text"
+              value={text3}
               onChange={(e) =>
                 settext3(e.target.value)
               }
@@ -144,6 +157,7 @@ const Contact2 = () => {
               className="w-[529px] h-[120px] border rounded-[5px] items-center pl-[30px] mt-[22px]"
               placeholder="Hi! i’d like to ask about"
               type="text"
+              value={text2}
               onChange={(e) =>
                 settext2(e.target.value)
               }

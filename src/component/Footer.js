@@ -1,12 +1,16 @@
 import React from 'react';
-
+import { Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import Signup from './SignUp';
+import Login from './Login';
 const Footer = () => {
+  const [show1, setShow1] = useState(false);
   const initialState = {
     email: '',
     password: '',
   };
-  const [emai, setEmai] = useState(initialState); // Khởi tạo trạng thái và hàm để cập nhật trạng thái
+  const [emai, setEmai] = useState(initialState);
+  useState(initialState);
   useEffect(() => {
     const emailStore =
       window.localStorage.getItem('email');
@@ -18,13 +22,25 @@ const Footer = () => {
       [e.target.name]: e.target.value,
     });
   };
+  const [getUser, setGetuser] = useState();
+  const [show, setShow] = useState(false);
   const handleSubmit = () => {
     window.localStorage.setItem(
       'email',
       emai.email,
+      setShow1(true),
     );
+    const getUser1 =
+      window.localStorage.getItem('email');
+    setGetuser(getUser1);
   };
-  const [show, setShow] = useState(false);
+  console.log(getUser);
+  const loggin = () => {
+    setShow(true);
+    setShow1(false);
+  };
+  window.localStorage.getItem('email');
+
   return (
     <div className="w-full font-sans h-[505px] border-slate-300 pt-[48px] px-[100px] border-solid border-t-2 flex flex-col gap-12 mt-[30px] ">
       <div className="flex flex-row gap-[138px]">
@@ -76,7 +92,7 @@ const Footer = () => {
           </p>
           <p
             className=" text-black hover:text-red-500 underline"
-            onClick={() => setShow(!show)}
+            onClick={loggin}
           >
             Sign in here
           </p>
@@ -99,43 +115,8 @@ const Footer = () => {
       <p className="leading-[24px] text-[16px] text-black">
         2023 furino. All rights reverved
       </p>
-      {show && (
-        <div>
-          <div className=" z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[20px]">
-            <p className="text-[25px]">SIGN IN</p>
-            <input
-              placeholder="Enter your email"
-              name="email"
-              onChange={handleChange}
-              className=" pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-            ></input>
-            <input
-              placeholder="Enter password"
-              type="password"
-              name="password"
-              onChange={handleChange}
-              className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-            ></input>
-            <input
-              placeholder="Enter confirm password"
-              type="password"
-              name="password"
-              onChange={handleChange}
-              className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-            ></input>
-            <button
-              onClick={handleSubmit}
-              className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]"
-            >
-              Sign in
-            </button>
-          </div>
-          <div
-            className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
-            onClick={() => setShow(false)}
-          />
-        </div>
-      )}
+      {show && <Signup show1={show1} />}
+      {show1 && <Login />}
     </div>
   );
 };

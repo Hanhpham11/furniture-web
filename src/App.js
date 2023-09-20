@@ -5,13 +5,19 @@ import {
 } from 'react-router-dom';
 import Shop from './Shop/Shop.js';
 import Home from './Home/Home';
-
 import Contact from './component/Contact Us/Contact';
 import Checkout from './component/Checkout/Checkout';
 import { ShopProvider1 } from './component/ShopContext1';
 import Details from './DetailsProducts/Details';
 import About from './component/About/About';
+<<<<<<< HEAD
+import Adminproduct from './Admin/Adminproduct';
+import Admin from './Admin/Admin';
+=======
+import Dashboard from './admin/Dashboard';
 
+import Adminproduct from './Admin/Adminproduct';
+import Admin from './Admin/Admin';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -37,6 +43,15 @@ const router = createBrowserRouter([
     path: '/About',
     element: <About />,
   },
+{
+    path: '/Adminproduct',
+    element: <Adminproduct />,
+  },
+  {
+    path: '/Admin',
+    element: <Admin />,
+  },
+
 ]);
 
 const App = () => {

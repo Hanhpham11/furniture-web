@@ -67,8 +67,8 @@ function Pagination() {
     setcurrentPage(currentPage + number);
   };
 
-  useEffect(() => {
-    fetch(
+  useEffect(async () => {
+    await fetch(
       'https://64d61e33754d3e0f1361a0ec.mockapi.io/products',
     )
       .then((res) => res.json())

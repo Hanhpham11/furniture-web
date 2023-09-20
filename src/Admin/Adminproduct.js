@@ -71,29 +71,24 @@ const Adminproduct = () => {
       console.log(response);
       setItems(response.data);
     }
-
-    if (response.status === 201) {
-      alert('Request sent successfully');
-    }
-    console.log(response);
-  };
-
-  // useEffect(() => {
-  //   getData();
-  // }, []);
-  const handleGetData = () => {
-    getData()
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
   };
 
   useEffect(() => {
-    handleGetData();
+    getData();
   }, []);
+  // const handleGetData = () => {
+  //   getData()
+  //     .then((res) => {
+  //       setItems(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   handleGetData();
+  // }, []);
 
   const [image, setImage] = useState(null); // state lưu ảnh sau khi chọn
   const [progress, setProgress] = useState(0); // state hiển thị phần trăm tải ảnh lên store
@@ -168,6 +163,7 @@ const Adminproduct = () => {
           );
 
           getData();
+          setShow(false);
         });
       },
     );
@@ -177,7 +173,7 @@ const Adminproduct = () => {
 
     if (window.confirm(text) === true) {
       const res = await axios.delete(
-        'https://64d61e33754d3e0f1361a0ec.mockapi.io//products/' +
+        'https://64d61e33754d3e0f1361a0ec.mockapi.io/products/' +
           id,
       );
 
@@ -187,7 +183,7 @@ const Adminproduct = () => {
       await getData();
     }
   };
-
+  console.log('sadad', items);
   return (
     <div className="w-full">
       <button

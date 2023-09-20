@@ -24,9 +24,11 @@ const formatter = new Intl.NumberFormat('en-US', {
   currency: 'USD',
   minimumFractionDigits: 2,
 });
+
+////////
 const ShopContext2 = React.createContext();
 const ShopProvider2 = ({ children }) => {
-  const [show1, setShow1] = useState(true);
+  const [show1, setShow1] = useState(false);
   return (
     <ShopContext2.Provider
       value={{ show1, setShow1 }}

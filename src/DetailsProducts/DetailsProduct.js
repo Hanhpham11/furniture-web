@@ -31,7 +31,7 @@ function DetailsProduct() {
     getDetail();
   }, []);
 
-  const [plus, setPlus] = useState(0);
+  const [plus, setPlus] = useState(1);
 
   const OnPlus = () => {
     if (plus == 10) {
@@ -49,8 +49,8 @@ function DetailsProduct() {
   };
 
   return (
-    <div className="font-sans flex flex-col">
-      <div className="flex w-full pl-[99px]gap-[14px] px-[38px] bg-[#F9F1E7] h-[100px] items-center">
+    <div className="font-sans flex flex-col gap-[10px]">
+      <div className="flex w-full pl-[99px]gap-[14px] px-[38px] bg-[#F9F1E7] h-[100px] items-center mt-[100px]">
         <p className="leading-[24px] text-[16px] text-gray-400">
           Home
         </p>
@@ -84,15 +84,15 @@ function DetailsProduct() {
         <p className="h=[37px] leading-[24px] text-[16px] text-gray-400 ml-[10px]">
           |
         </p>
-        <div className="leading-[24px] text-[16px] text-gray-400 ml-[10px]">
+        <div className="leading-[24px] text-[16px] text-gray-400 ml-[10px] ">
           {detail && (
             <p className="text-[20px] text-black">
-              {detail.name}
+              {detail.productname}
             </p>
           )}
         </div>
       </div>
-      <div className="flex gap-[82px] py-5 ml-[50px]">
+      <div className="flex gap-[82px] py-5 ml-[50px] mt-[50px]">
         <div className="flex mx-[20px]  flex-2 ">
           {detail && (
             <img
@@ -107,7 +107,7 @@ function DetailsProduct() {
         </div>
         <div className="flex flex-col flex-1 gap-[20px] ">
           <h3 className="text-[42px]  ">
-            {detail.name}
+            {detail.productname}
           </h3>
           <span className=" text-[24px] text-[#9F9F9F]">
             {formatter.format(detail.price)}
@@ -177,6 +177,7 @@ function DetailsProduct() {
               >
                 -
               </p>
+
               <p className="leading-[24px] text-[16px]">
                 {plus}
               </p>

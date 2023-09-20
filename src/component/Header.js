@@ -6,25 +6,28 @@ import {
   useShopContext1,
 } from './ShopContext1';
 import { useState, useEffect } from 'react';
-import { groupBy, keys } from 'ramda';
+import { groupBy, keys, values } from 'ramda';
 import { current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import SearchNow from './SearchNow';
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 
 const validate = (values) => {
-  const errors = {};
-
+  const error = {};
   if (!values.email) {
-    errors.email = 'Required';
+    error.email = 'Required';
   } else if (
-    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+    !/^[A-Za-z0-9._%+-]+@[A-Z0-9.-]+\.[A-Za-z]{2,}$/i.test(
       values.email,
+    ) ||
+    !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(
+      values.password,
     )
   ) {
-    errors.email = 'Invalid email address';
+    error.email = 'Invalid email address';
+    error.password = 'wrong password';
   }
-  return errors;
+  return error;
 };
 
 const Header = () => {
@@ -65,10 +68,28 @@ const Header = () => {
   const formik = useFormik({
     initialValues: {
       email: ' ',
+      password: '',
     },
     validate,
     onSubmit: (values) => {
-      alert(JSON.stringify(values, null, 2));
+      const error = {};
+      if (!values.email || !values.password) {
+        error.email = 'Required';
+        error.password = 'Requied';
+      } else if (
+        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
+          values.email,
+        ) ||
+        !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(
+          values.password,
+        )
+      ) {
+        error.email = 'Invalid email address';
+        error.password = 'wrong password';
+      } else {
+        alert('Sign in Success');
+      }
+      return error;
     },
   });
 
@@ -126,46 +147,27 @@ const Header = () => {
                 </p>
               </div>
             </div>
-            <button
-              className=" rounded-md w-[100px] bg-[#FA8443] text-white"
-              onClick={() => setShow1(!show1)}
-            >
-              Sign In
-            </button>
+            <div>
+              <button
+                className=" rounded-md w-[100px] bg-[#FA8443] text-white"
+                onClick={() => setShow1(!show1)}
+              >
+                Sign In
+              </button>
+              <button
+                className=" rounded-md w-[100px] bg-[#FA8443] text-white hidden"
+                id="logout"
+              >
+                Log out
+              </button>
+            </div>
           </div>
         </div>
       </div>
       {show1 && (
         <div>
           <form onSubmit={formik.handleSubmit}>
-            <div className=" z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]">
-              {/* <p className="text-[25px]">
-                SIGN IN
-              </p>
-              <input
-                placeholder="Enter your email"
-                name="email"
-                id="email"
-                onChange={formik.handleChange}
-                onBlur={formik.values.email}
-                className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-              ></input>
-              {formik.touched.email &&
-              formik.errors.email ? (
-                <span>{formik.errors.email}</span>
-              ) : null}
-              <input
-                placeholder="Enter password"
-                type="password"
-                name="password"
-                className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-              ></input>
-              <button
-                type="submit"
-                className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]"
-              >
-                Sign In
-              </button> */}
+            <div className=" form-login z-10 fixed top-[200px]  border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]">
               <p className="text-[25px]">
                 SIGN IN
               </p>
@@ -187,15 +189,23 @@ const Header = () => {
                 type="password"
                 name="password"
                 id="password"
-                placeholder="Enter your email"
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+                value={formik.values.password}
+                placeholder="Enter your pass"
                 className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
               />
+              {formik.touched.password &&
+              formik.errors.password ? (
+                <span>
+                  {formik.errors.password}
+                </span>
+              ) : null}
               <button type="submit">
                 Submit
               </button>
             </div>
           </form>
-
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
             onClick={() => setShow1(false)}
@@ -233,7 +243,10 @@ const Header = () => {
                         />
                         <div className="flex flex-col gap-[11px] mt-[17px]">
                           <p className="leading-[24px] text-[16px] text-black">
-                            {result[key][0].name}
+                            {
+                              result[key][0]
+                                .productname
+                            }
                           </p>
                           <div className="flex flex-row gap-[15px] items-center">
                             <p className="leading-[24px] text-[16px] text-black">
@@ -284,24 +297,17 @@ const Header = () => {
                   }}
                   className="leading-[24px] text-[16px] "
                 >
-                  {Tota}
+                  {formatter.format(Tota)}
                 </p>
               </div>
             </div>
 
             <div className="flex flex-row gap-[14px] mt-[26px]">
-              <button className="leading-[18px] text-[12px] border tex-black rounded-[50px] w-[87px] h-[30px] text-center border">
-                Cart
-              </button>
               <Link to={'/Checkout'}>
                 <button className="leading-[18px] text-[12px] border tex-black rounded-[50px] w-[118px] h-[30px] text-center border">
                   Checkout
                 </button>
               </Link>
-
-              <button className="leading-[18px] text-[12px] border tex-black rounded-[50px] w-[135px] h-[30px] text-center border">
-                Comparison
-              </button>
             </div>
           </div>
           <div

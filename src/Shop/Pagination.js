@@ -15,12 +15,6 @@ function Pagination() {
   const [data, setData] = useState([]);
   const [items, setItems] = useState([]);
 
-  // const [q, setQ] = useState('');
-  // const [searchParam] = useState([
-  //   'type',
-  //   'name',
-  //   'price',
-  // ]);
   const [filterParam, setFilterParam] =
     useState('All');
   const [currentPage, setcurrentPage] =
@@ -106,7 +100,7 @@ function Pagination() {
             <div className="item">
               <img
                 src={item.url}
-                alt={item.name}
+                alt={item.productname}
                 style={{
                   width: 284,
                   height: 301,
@@ -124,7 +118,7 @@ function Pagination() {
             <div className="infor  ">
               <Link to={'/detail/' + item.id}>
                 <p className=" text-[20px]">
-                  {item.name}
+                  {item.productname}
                 </p>
               </Link>
               <p className="text-[18px] py-2 text-[#898989]">

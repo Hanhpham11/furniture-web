@@ -70,7 +70,7 @@ function OurProducts() {
                     {item.type}
                   </p>
                   <p className=" ml-[16px] leading-[24px] text-[16px] text-[#898989]">
-                    {item.name}
+                    {item.productname}
                   </p>
                   <p className=" ml-[16px] leading-[30px] text-[20px] text-black">
                     {formatter.format(item.price)}

@@ -11,6 +11,8 @@ import Checkout from './component/Checkout/Checkout';
 import { ShopProvider1 } from './component/ShopContext1';
 import Details from './DetailsProducts/Details';
 import About from './component/About/About';
+import Dashboard from './admin/Dashboard';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -35,6 +37,10 @@ const router = createBrowserRouter([
   {
     path: '/About',
     element: <About />,
+  },
+  {
+    path: '/admin',
+    element: <Dashboard />,
   },
 ]);
 

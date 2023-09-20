@@ -41,11 +41,29 @@ const validate = (values) => {
 
   return errors;
 };
+
+const ShopContext2 = React.createContext();
+
+const ShopProvider2 = ({ children }) => {
+  const [show1, setShow1] = useState([]);
+
+  return (
+    <ShopContext2.Provider
+      value={{ show1, setShow1 }}
+    >
+      {children}
+    </ShopContext2.Provider>
+  );
+};
+const useShopContext2 = () => {
+  const shopContext2 = useContext(ShopContext2);
+  return shopContext2;
+};
 export {
   ShopProvider1,
   useShopContext1,
-  useShopContext2,
-  ShopProvider2,
   formatter,
   validate,
+  useShopContext2,
+  ShopProvider2,
 };

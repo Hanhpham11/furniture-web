@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import {
   formatter,
   useShopContext1,
+  useShopContext2,
 } from './ShopContext1';
 import { useState, useEffect } from 'react';
 import { groupBy, keys, values } from 'ramda';
@@ -42,7 +43,7 @@ const Header = () => {
     // console.log(data);
   }
   const [show, setShow] = useState(false);
-  const [show1, setShow1] = useState(false);
+  const { show1, setShow1 } = useShopContext2();
   const { cart = [], setCart } =
     useShopContext1();
   const result = groupBy(({ id }) => id)(cart);
@@ -166,46 +167,6 @@ const Header = () => {
       </div>
       {show1 && (
         <div>
-          <form onSubmit={formik.handleSubmit}>
-            <div className=" form-login z-10 fixed top-[200px]  border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]">
-              <p className="text-[25px]">
-                SIGN IN
-              </p>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.email}
-                placeholder="Enter your email"
-                className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-              />
-              {formik.touched.email &&
-              formik.errors.email ? (
-                <span>{formik.errors.email}</span>
-              ) : null}
-              <input
-                type="password"
-                name="password"
-                id="password"
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                value={formik.values.password}
-                placeholder="Enter your pass"
-                className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-              />
-              {formik.touched.password &&
-              formik.errors.password ? (
-                <span>
-                  {formik.errors.password}
-                </span>
-              ) : null}
-              <button type="submit">
-                Submit
-              </button>
-            </div>
-          </form>
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
             onClick={() => setShow1(false)}

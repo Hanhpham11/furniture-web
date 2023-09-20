@@ -55,7 +55,6 @@ const Adminproduct = () => {
     );
     setPost0(post1);
   };
-  console.log(pageArray);
   const getData = async () => {
     const response = await axios.get(
       'https://64d61e33754d3e0f1361a0ec.mockapi.io//products',

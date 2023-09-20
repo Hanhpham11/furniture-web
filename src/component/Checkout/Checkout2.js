@@ -46,7 +46,12 @@ const Checkout2 = () => {
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Country / Region
         </p>
-        <input className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"></input>
+        <select
+          id="country"
+          className="pl-[29px] w-[453px] h-[75px] rounded-[10px] border-solid border-[1px] border-[#9F9F9F] rounded-[10px] mt-[22px]"
+        >
+          <option></option>
+        </select>
         <p className="leading-[24px] text-[16px] text-black mt-[36px]">
           Street address
         </p>
@@ -88,7 +93,7 @@ const Checkout2 = () => {
               <div className="flex flex-row mt-[14px] justify-between  ">
                 <div className="flex flex-row">
                   <p className="leading-[24px] text-[16px] text-[#9F9F9F] w-[108px]">
-                    {result[key][0].name}
+                    {result[key][0].productname}
                   </p>
                   <p className="leading-[24px] text-[16px] text-black ml-[11px]">
                     x

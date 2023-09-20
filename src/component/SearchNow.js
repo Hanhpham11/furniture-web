@@ -17,7 +17,7 @@ function SearchNow() {
 
   useEffect(() => {
     fetch(
-      'https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure'
+      'https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure',
     )
       .then((res) => res.json())
       .then(
@@ -28,7 +28,7 @@ function SearchNow() {
         (error) => {
           setIsLoaded(true);
           setError(error);
-        }
+        },
       );
   }, []);
 
@@ -118,6 +118,10 @@ function SearchNow() {
                 </div>
               </div>
             ))}
+            <div
+              className=" fixed inset-0  bg-opacity-40 z-[5]"
+              onClick={() => setShow(false)}
+            />
           </div>
         )}
       </div>

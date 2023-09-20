@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@react-navigation/native": "^6.1.7",
     "@reduxjs/toolkit": "^1.9.5",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
@@ -10,6 +11,8 @@
     "antd": "^5.8.5",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
+    "firebase": "^10.4.0",
+    "formik": "^2.4.4",
     "graphql-request": "^6.1.0",
     "i18next": "^23.4.5",
     "prop-types": "^15.8.1",

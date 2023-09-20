@@ -6,6 +6,7 @@ import {
   formatter,
   useShopContext1,
 } from '../component/ShopContext1';
+import { ifElse } from 'ramda';
 
 function Pagination() {
   const [error, setError] = useState(null);
@@ -23,6 +24,7 @@ function Pagination() {
   console.log('hiHello', search(items));
   //phan trang
   console.log('hello', items);
+  const data = Object.values(items);
   const [currentPage, setcurrentPage] =
     useState(1);
   const [itemsPerPage, setitemsPerPage] =
@@ -132,9 +134,10 @@ function Pagination() {
         },
       );
   }, []);
+
   function search(items) {
     return items.filter((item) => {
-      if (item.type === filterParam) {
+      if (item.type == filterParam) {
         return searchParam.some((newItem) => {
           return (
             item[newItem]
@@ -143,7 +146,7 @@ function Pagination() {
               .indexOf(q.toLowerCase()) > -1
           );
         });
-      } else if (filterParam === 'All') {
+      } else if (filterParam == 'All') {
         return searchParam.some((newItem) => {
           return (
             item[newItem]
@@ -160,10 +163,12 @@ function Pagination() {
   const Add1 = (hello) => {
     setCart([hello, ...cart]);
   };
+  console.log('hihello', search(items));
   const displayData = (items) => {
     return (
+      ///
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
-        {search(items).map((item, index) => (
+        {items.map((item, index) => (
           <div
             key={index}
             className=" card h-[440px]"
@@ -204,7 +209,7 @@ function Pagination() {
       </div>
     );
   };
-  const data = Object.values(items);
+
   if (error) {
     return (
       <p>
@@ -288,16 +293,57 @@ function Pagination() {
                 Filter By type
               </option>
               <option value="Chair">Chair</option>
-              <option value="Fish">Fish</option>
-              <option value="Asia">Asia</option>
-              <option value="Cheese">
-                Cheese
+              <option value="Cabinet">
+                Cabinet
               </option>
-              <option value="Car">Car</option>
+              <option value="Wardrobe">
+                Wardrobe
+              </option>
+              <option value="Table">Table</option>
+              <option value="Sofa">Sofa</option>
             </select>
           </div>
         </div>
-
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className=" card h-[440px]"
+            >
+              <div className="item">
+                <img
+                  src={item.url}
+                  alt={item.name}
+                  style={{
+                    width: 284,
+                    height: 301,
+                  }}
+                />
+                <div className="add w-[285px] h-[301px]">
+                  <button
+                    onClick={() => Add1(item)}
+                    className="  bottom-2 left-2 border-solid border h-[48px] w-[202px]"
+                  >
+                    Add to Cart
+                  </button>
+                </div>
+              </div>
+              <div className="infor  ">
+                <Link to={'/detail/' + item.id}>
+                  <p className=" text-[20px]">
+                    {item.name}
+                  </p>
+                </Link>
+                <p className="text-[18px] py-2 text-[#898989]">
+                  {item.type}
+                </p>
+                <span className="text-[18px]">
+                  {formatter.format(item.price)}
+                </span>
+              </div>
+            </div>
+          ))}
+        </div>
         {displayData(pageItems)}
         <ul className="pageNumbers">
           <li>

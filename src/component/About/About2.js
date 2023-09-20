@@ -13,7 +13,7 @@ const About2 = () => {
             order: ['id DESC'],
           },
         },
-      }
+      },
     );
     if (response.status === 200) {
       console.log(response);
@@ -24,15 +24,15 @@ const About2 = () => {
   useEffect(() => {
     getData();
   }, []);
-  console.log('number1', posts);
+
   const post2 = posts.slice(0, 3);
   console.log(post2);
   const [post0 = post2, setPost0] = useState();
-  console.log('number3', post0);
+
   const Post1 = (targetId, nextId) => {
     const post1 = posts.filter(
       (item) =>
-        item.id <= nextId && item.id > targetId
+        item.id <= nextId && item.id > targetId,
     );
     setPost0(post1);
   };

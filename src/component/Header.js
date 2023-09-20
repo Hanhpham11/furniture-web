@@ -7,7 +7,8 @@ import { groupBy, keys } from 'ramda';
 import { current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import SearchNow from './SearchNow';
-
+import Login from './Login';
+import { useShopContext2 } from './ShopContext1';
 const Header = () => {
   const [keyword, setKeyword] = useState('');
   function handleInput(e) {
@@ -118,23 +119,7 @@ const Header = () => {
       </div>
       {show1 && (
         <div>
-          <div className=" z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]">
-            <p className="text-[25px]">SIGN UP</p>
-            <input
-              placeholder="Enter your email"
-              name="email"
-              className="mt-[10px] pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-            ></input>
-            <input
-              placeholder="Enter password"
-              type="password"
-              name="password"
-              className="pl-[15px] h-[50px] w-[200px] border border-solid border-[1px] border-white bg-slate-100 rounded-[10px]"
-            ></input>
-            <button className="mt-[10px] bg-white border border-solid border-[1px] border-black w-[100px] h-[30px]">
-              Sign up
-            </button>
-          </div>
+          <Login />
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
             onClick={() => setShow1(false)}

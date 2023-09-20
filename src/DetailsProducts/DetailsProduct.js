@@ -31,7 +31,7 @@ function DetailsProduct() {
     getDetail();
   }, []);
 
-  const [plus, setPlus] = useState(0);
+  const [plus, setPlus] = useState(1);
 
   const OnPlus = () => {
     if (plus == 10) {
@@ -41,7 +41,7 @@ function DetailsProduct() {
     }
   };
   const OnDivison = () => {
-    if (plus == 0) {
+    if (plus == 1) {
       setPlus(plus);
     } else {
       setPlus(plus - 1);

@@ -1,0 +1,16 @@
+.page {
+  background: url('/public/images/background page.png');
+}
+table,
+th,
+td {
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+}
+td {
+  vertical-align: middle;
+  padding: 10px;
+}
+table {
+  border-collapse: collapse;
+}

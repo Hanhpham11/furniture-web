@@ -2,6 +2,7 @@ import React, {
   useContext,
   useState,
 } from 'react';
+import { useFormik } from 'formik';
 const ShopContext1 = React.createContext();
 
 const ShopProvider1 = ({ children }) => {
@@ -25,21 +26,20 @@ const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
 });
 
-////////
-const ShopContext2 = React.createContext();
-const ShopProvider2 = ({ children }) => {
-  const [show1, setShow1] = useState(false);
-  return (
-    <ShopContext2.Provider
-      value={{ show1, setShow1 }}
-    >
-      {children}
-    </ShopContext2.Provider>
-  );
-};
-const useShopContext2 = () => {
-  const shopContext1 = useContext(ShopContext1);
-  return shopContext1;
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+      values.email,
+    )
+  ) {
+    errors.email = 'Invalid email address';
+  }
+
+  return errors;
 };
 export {
   ShopProvider1,
@@ -47,4 +47,5 @@ export {
   useShopContext2,
   ShopProvider2,
   formatter,
+  validate,
 };

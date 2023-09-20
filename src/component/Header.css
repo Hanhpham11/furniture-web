@@ -11,3 +11,15 @@
   background-color: rgb(249, 252, 251);
   box-shadow: 2px;
 }
+.form-login {
+  height: 55%;
+  width: 50%;
+  display: flex;
+  align-items: center;
+  left: 400px;
+}
+.form-login input,
+button {
+  width: 80%;
+  height: 50px;
+}

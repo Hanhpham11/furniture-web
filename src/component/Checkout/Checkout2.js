@@ -1,6 +1,9 @@
 import React from 'react';
 import { groupBy, keys } from 'ramda';
-import { useShopContext1 } from '../ShopContext1';
+import {
+  formatter,
+  useShopContext1,
+} from '../ShopContext1';
 import './Chechout2.css';
 const Checkout2 = () => {
   const { cart = [] } = useShopContext1();
@@ -103,7 +106,9 @@ const Checkout2 = () => {
                   </p>
                 </div>
                 <p className="leading-[24px] w-[109px] text-[16px] text-black text-end ">
-                  {result[key][0].price}
+                  {formatter.format(
+                    result[key][0].price,
+                  )}
                 </p>
               </div>
             )}
@@ -114,7 +119,7 @@ const Checkout2 = () => {
             Subtotal
           </p>
           <p className="leading-[24px] text-[16px] text-black ">
-            {Tota}
+            {formatter.format(Tota)}
           </p>
         </div>
         <div className="flex flex-row mt-[16px] justify-between ">
@@ -122,7 +127,7 @@ const Checkout2 = () => {
             Total
           </p>
           <p className="leading-[36px] text-[24px] text-[#B88E2F] ">
-            {Tota}
+            {formatter.format(Tota)}
           </p>
         </div>
         <div className="w-full h-[1px] bg-[#D9D9D9] mt-[39.5px]"></div>

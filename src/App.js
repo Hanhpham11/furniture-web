@@ -15,6 +15,9 @@ import Details from './DetailsProducts/Details';
 import About from './component/About/About';
 import Adminproduct from './Admin/Adminproduct';
 import Admin from './Admin/Admin';
+
+import Adminproduct from './Admin/Adminproduct';
+import Admin from './Admin/Admin';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -40,6 +43,7 @@ const router = createBrowserRouter([
     path: '/About',
     element: <About />,
   },
+
   {
     path: '/Adminproduct',
     element: <Adminproduct />,

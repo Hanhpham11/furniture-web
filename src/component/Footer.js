@@ -94,7 +94,7 @@ const Footer = () => {
             className=" text-black hover:text-red-500 underline"
             onClick={loggin}
           >
-            Sign in here
+            Sign up here
           </p>
 
           {/* <input

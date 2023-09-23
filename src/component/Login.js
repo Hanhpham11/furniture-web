@@ -4,7 +4,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { useShopContext2 } from './ShopContext1';
 const Login = () => {
-  const [show1, setShow1] = useState(true);
+  const { show1, setShow1 } = useShopContext2();
   const [email, setEmail] = useState('');
   const [passwor, setPasswor] = useState('');
   const [username, setUsername] = useState([]);

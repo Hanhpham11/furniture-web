@@ -7,14 +7,14 @@ import Shop from './Shop/Shop.js';
 import Home from './Home/Home';
 import Contact from './component/Contact Us/Contact';
 import Checkout from './component/Checkout/Checkout';
-import { ShopProvider1 } from './component/ShopContext1';
+import {
+  ShopProvider1,
+  ShopProvider2,
+} from './component/ShopContext1';
 import Details from './DetailsProducts/Details';
 import About from './component/About/About';
-<<<<<<< HEAD
 import Adminproduct from './Admin/Adminproduct';
 import Admin from './Admin/Admin';
-=======
-import Dashboard from './admin/Dashboard';
 
 import Adminproduct from './Admin/Adminproduct';
 import Admin from './Admin/Admin';
@@ -43,7 +43,8 @@ const router = createBrowserRouter([
     path: '/About',
     element: <About />,
   },
-{
+
+  {
     path: '/Adminproduct',
     element: <Adminproduct />,
   },
@@ -51,14 +52,15 @@ const router = createBrowserRouter([
     path: '/Admin',
     element: <Admin />,
   },
-
 ]);
 
 const App = () => {
   return (
-    <ShopProvider1>
-      <RouterProvider router={router} />
-    </ShopProvider1>
+    <ShopProvider2>
+      <ShopProvider1>
+        <RouterProvider router={router} />
+      </ShopProvider1>
+    </ShopProvider2>
   );
 };
 

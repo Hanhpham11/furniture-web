@@ -26,10 +26,44 @@ const formatter = new Intl.NumberFormat('en-US', {
   minimumFractionDigits: 2,
 });
 
+const validate = (values) => {
+  const errors = {};
+
+  if (!values.email) {
+    errors.email = 'Required';
+  } else if (
+    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(
+      values.email,
+    )
+  ) {
+    errors.email = 'Invalid email address';
+  }
+
+  return errors;
+};
+
+const ShopContext2 = React.createContext();
+
+const ShopProvider2 = ({ children }) => {
+  const [show1, setShow1] = useState([]);
+
+  return (
+    <ShopContext2.Provider
+      value={{ show1, setShow1 }}
+    >
+      {children}
+    </ShopContext2.Provider>
+  );
+};
+const useShopContext2 = () => {
+  const shopContext2 = useContext(ShopContext2);
+  return shopContext2;
+};
 export {
   ShopProvider1,
   useShopContext1,
+  formatter,
+  validate,
   useShopContext2,
   ShopProvider2,
-  formatter,
 };

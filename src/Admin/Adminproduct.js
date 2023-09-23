@@ -203,7 +203,7 @@ const Adminproduct = () => {
           </tr>
         </thead>
         <tbody>
-          {post0.map((item, index) => (
+          {items.map((item, index) => (
             <tr key={index}>
               <td>
                 <div>

@@ -48,7 +48,6 @@ const Signup = (show1) => {
     if (response.status === 201) {
       alert('Request sent successfully');
     }
-    console.log(response);
   };
   return (
     <div className=" z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[20px]">

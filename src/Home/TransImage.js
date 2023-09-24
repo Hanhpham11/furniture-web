@@ -17,7 +17,6 @@ function Slideshow(list) {
       },
     );
     if (response.status === 200) {
-      // console.log(response);
       setImages(response.data);
     }
   };
@@ -40,7 +39,7 @@ function Slideshow(list) {
 
   React.useEffect(() => {
     resetTimeout();
-    timeoutRef.current = setTimeout(
+    timeoutRef.current = window.setTimeout(
       () =>
         setIndex((prevIndex) =>
           prevIndex === getImage.length - 1

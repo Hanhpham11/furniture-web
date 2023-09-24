@@ -5,6 +5,9 @@ import {
   formatter,
   useShopContext1,
   useShopContext2,
+  useShopContext3,
+  useShopContext4,
+  useShopContext5,
 } from './ShopContext1';
 import { useState, useEffect } from 'react';
 import { groupBy, keys, values } from 'ramda';
@@ -12,26 +15,10 @@ import { current } from '@reduxjs/toolkit';
 import axios from 'axios';
 import SearchNow from './SearchNow';
 import { Formik, useFormik } from 'formik';
+import Login from './Login';
+import { useContext } from 'react';
 
-const validate = (values) => {
-  const error = {};
-  if (!values.email) {
-    error.email = 'Required';
-  } else if (
-    !/^[A-Za-z0-9._%+-]+@[A-Z0-9.-]+\.[A-Za-z]{2,}$/i.test(
-      values.email,
-    ) ||
-    !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(
-      values.password,
-    )
-  ) {
-    error.email = 'Invalid email address';
-    error.password = 'wrong password';
-  }
-  return error;
-};
-
-const Header = () => {
+function Header() {
   const [keyword, setKeyword] = useState('');
   function handleInput(e) {
     setKeyword(e.target.value);
@@ -42,8 +29,14 @@ const Header = () => {
     );
     // console.log(data);
   }
+  const [message, setMessage] = useState('');
+
   const [show, setShow] = useState(false);
+  const [show5, setShow5] = useState(false);
+  const { show3, setShow3 } = useShopContext4();
+  const { show4, setShow4 } = useShopContext5();
   const { show1, setShow1 } = useShopContext2();
+  const { show2, setShow2 } = useShopContext3();
   const { cart = [], setCart } =
     useShopContext1();
   const result = groupBy(({ id }) => id)(cart);
@@ -65,35 +58,21 @@ const Header = () => {
       ),
     0,
   );
-  // validation email
-  const formik = useFormik({
-    initialValues: {
-      email: ' ',
-      password: '',
-    },
-    validate,
-    onSubmit: (values) => {
-      const error = {};
-      if (!values.email || !values.password) {
-        error.email = 'Required';
-        error.password = 'Requied';
-      } else if (
-        !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(
-          values.email,
-        ) ||
-        !/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/i.test(
-          values.password,
-        )
-      ) {
-        error.email = 'Invalid email address';
-        error.password = 'wrong password';
-      } else {
-        alert('Sign in Success');
-      }
-      return error;
-    },
-  });
-
+  const account =
+    window.localStorage.getItem('userEmail') ||
+    '';
+  const account1 = account[0];
+  const onLoggout = () => {
+    window.localStorage.removeItem('userEmail');
+    setShow5(false);
+    setShow3(false);
+    setShow4(true);
+  };
+  // const [message, setMessage] = useState('')
+  const setChange = function (childdata) {
+    // console.log('datafromChild', childdata);
+  };
+  SearchNow(setChange);
   return (
     <div>
       <div className="w-full font-sans h-[100px] bg-white pl-[54px]  top-0 left-0 right-0 z-10 fixed">
@@ -148,20 +127,35 @@ const Header = () => {
                 </p>
               </div>
             </div>
-            <div>
-              <button
-                className=" rounded-md w-[100px] bg-[#FA8443] text-white"
-                onClick={() => setShow1(!show1)}
-              >
-                Sign In
-              </button>
-              <button
-                className=" rounded-md w-[100px] bg-[#FA8443] text-white hidden"
-                id="logout"
-              >
-                Log out
-              </button>
-            </div>
+            {show3 && (
+              <div className="flex flex-row items-center gap-4 w-[100px]">
+                <div
+                  onClick={() => setShow5(!show5)}
+                  className=" bg-amber-300 ml-[50px]  rounded-full  text-center py-[4px] h-[40px] w-[40px]"
+                >
+                  <p className="text-white text-[28px]">
+                    {account1}
+                  </p>
+                </div>
+                {/* <button
+                  onClick={handleLogout}
+                  className="py-3 px-3 rounded-md bg-[#FA8443] text-white"
+                >
+                  LOGOUT
+                </button> */}
+              </div>
+            )}
+            {show4 && (
+              <div>
+                <button
+                  className=" rounded-md w-[100px] bg-[#FA8443] text-white"
+                  onClick={() => setShow1(!show1)}
+                >
+                  Sign In
+                </button>
+                {show1 && <Login />}
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -277,7 +271,27 @@ const Header = () => {
           />
         </div>
       )}
+      {show5 && (
+        <div>
+          <div className=" px-[5px] py-[10px] fixed right-0 top-[100px] bottom-0 z-10 w-[150px] h-[120px] bg-white flex flex-col gap-[20px] ">
+            <p className="text-gray-700">
+              Purchase history
+            </p>
+
+            <p
+              onClick={onLoggout}
+              className="mt-[5px] text-gray-700"
+            >
+              Loggout
+            </p>
+          </div>
+          <div
+            className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
+            onClick={() => setShow5(false)}
+          />
+        </div>
+      )}
     </div>
   );
-};
+}
 export default Header;

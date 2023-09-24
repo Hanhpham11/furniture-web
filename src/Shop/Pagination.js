@@ -67,16 +67,25 @@ function Pagination() {
     setcurrentPage(currentPage + number);
   };
 
-  useEffect(async () => {
-    await fetch(
-      'https://64d61e33754d3e0f1361a0ec.mockapi.io/products',
-    )
-      .then((res) => res.json())
-      .then((json) => {
-        setIsLoaded(true);
-        setItems(json);
-        setData(json);
-      });
+  const fetchData = async () => {
+    try {
+      const response = await fetch(
+        'https://64d61e33754d3e0f1361a0ec.mockapi.io/products',
+      );
+      const data = await response.json();
+
+      return data;
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  useEffect(() => {
+    fetchData().then((json) => {
+      setIsLoaded(true);
+      setItems(json);
+      setData(json);
+    });
   }, []);
 
   // add to cart
@@ -84,12 +93,12 @@ function Pagination() {
   const Add1 = (hello) => {
     setCart([hello, ...cart]);
   };
+
   const displayData = (data) => {
     const pageItems = data.slice(
       indexOfFirstItem,
       indexOfLastItem,
     );
-
     return (
       ///
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">

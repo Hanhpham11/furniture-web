@@ -10,12 +10,13 @@ import Checkout from './component/Checkout/Checkout';
 import {
   ShopProvider1,
   ShopProvider2,
+  ShopProvider3,
+  ShopProvider4,
+  ShopProvider5,
 } from './component/ShopContext1';
 import Details from './DetailsProducts/Details';
 import About from './component/About/About';
-import Adminproduct from './Admin/Adminproduct';
-import Admin from './Admin/Admin';
-
+import SearchPage from './component/SearchPage';
 import Adminproduct from './Admin/Adminproduct';
 import Admin from './Admin/Admin';
 const router = createBrowserRouter([
@@ -52,15 +53,24 @@ const router = createBrowserRouter([
     path: '/Admin',
     element: <Admin />,
   },
+  {
+    path: '/SearchPage',
+    element: <SearchPage />,
+  },
 ]);
-
 const App = () => {
   return (
-    <ShopProvider2>
-      <ShopProvider1>
-        <RouterProvider router={router} />
-      </ShopProvider1>
-    </ShopProvider2>
+    <ShopProvider5>
+      <ShopProvider4>
+        <ShopProvider3>
+          <ShopProvider2>
+            <ShopProvider1>
+              <RouterProvider router={router} />
+            </ShopProvider1>
+          </ShopProvider2>
+        </ShopProvider3>
+      </ShopProvider4>
+    </ShopProvider5>
   );
 };
 

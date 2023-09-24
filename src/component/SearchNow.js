@@ -1,23 +1,27 @@
 import React from 'react';
 import { ReactDOM } from 'react';
 import { useState, useEffect } from 'react';
-
-function SearchNow() {
+import { Component } from 'react';
+import { useNavigate } from 'react-router-dom';
+import SearchPage from './SearchPage';
+function SearchNow(callBack) {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
   const [q, setQ] = useState('');
   const [searchParam] = useState([
-    'title',
-    'description',
+    'productname',
+    'type',
   ]);
+
   const [filterParam, setFilterParam] = useState([
     'All',
   ]);
 
+  const navigate = useNavigate();
   useEffect(() => {
     fetch(
-      'https://64d61f3d754d3e0f1361a33b.mockapi.io/Furniture/hi/utinure',
+      'https://64d61e33754d3e0f1361a0ec.mockapi.io//products',
     )
       .then((res) => res.json())
       .then(
@@ -33,8 +37,15 @@ function SearchNow() {
   }, []);
 
   const data = Object.values(items);
-
+  const [updated, setUpdated] = useState('');
   const [show, setShow] = useState(false);
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      navigate('/SearchPage');
+    }
+  };
+  const childdata = 'hi';
+  callBack = function (childdata) {};
 
   function search(items) {
     return items.filter((item) => {
@@ -84,6 +95,7 @@ function SearchNow() {
               <input
                 onClick={() => setShow(!show)}
                 type="search"
+                onKeyDown={handleKeyDown}
                 name="search-form"
                 id="search-form"
                 className="search-input border border-solid border-[1px] border-gray-300 rounded-[5px] h-[30px] w-[200px]"
@@ -94,26 +106,23 @@ function SearchNow() {
                 }
               />
             </div>
-
-            <span className="sr-only">
-              Search countries here
-            </span>
           </label>
         </div>
+
         {show && (
-          <div className="absolute z-50 bg-white card-grid flex flex-col gap-[60px] w-[200px] h-[200px] overflow-y-auto top-[70px]">
+          <div className="absolute z-50 bg-white card-grid flex flex-col gap-[20px] w-[200px] h-[200px] overflow-y-auto top-[70px]">
             {search(data)?.map((item) => (
               <div className="flex flex-row gap-[2px] h-[50px]">
                 <img
-                  src={item.image}
+                  src={item.url}
                   className="w-[30px] h-[30px]"
                 />
                 <div className="flex flex-col gap-[5px]">
                   <p className="text-[12px]">
-                    {item.title}
+                    {item.productname}
                   </p>
                   <p className="text-[10px] text-gray-500">
-                    {item.description}
+                    {item.type}
                   </p>
                 </div>
               </div>

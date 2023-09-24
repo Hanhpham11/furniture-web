@@ -34,7 +34,7 @@ const Footer = () => {
       window.localStorage.getItem('email');
     setGetuser(getUser1);
   };
-  console.log(getUser);
+  // console.log(getUser);
   const loggin = () => {
     setShow(true);
     setShow1(false);

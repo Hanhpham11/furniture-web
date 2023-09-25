@@ -3,9 +3,11 @@ import './Admin.css';
 import Adminproduct from './Adminproduct';
 import { useState } from 'react';
 import Admincontact from './Admincontact';
+import AdminOrder from './AdminOrder';
 const Admin = () => {
   const [show, setShow] = useState(true);
   const [show1, setShow1] = useState(false);
+  const [show2, setShow2] = useState(false);
   const onRequest = () => {
     setShow(false);
     setShow1(true);
@@ -13,6 +15,11 @@ const Admin = () => {
   const onProduct = () => {
     setShow1(false);
     setShow(true);
+  };
+  const onChekout = () => {
+    setShow1(false);
+    setShow(false);
+    setShow2(true);
   };
   return (
     <div className="w-full">
@@ -57,7 +64,10 @@ const Admin = () => {
               src="./images/order.png"
               className="w-[30px] h-[30px]"
             />
-            <p className="text1 text-[20px] text-black ">
+            <p
+              onClick={onChekout}
+              className="text1 text-[20px] text-black "
+            >
               The Orders
             </p>
           </div>
@@ -65,6 +75,7 @@ const Admin = () => {
         <div className=" flex">
           {show && <Adminproduct />}
           {show1 && <Admincontact />}
+          {show2 && <AdminOrder />}
         </div>
       </div>
     </div>

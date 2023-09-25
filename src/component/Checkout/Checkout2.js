@@ -3,12 +3,15 @@ import { groupBy, keys } from 'ramda';
 import {
   formatter,
   useShopContext1,
+  useShopContext2,
 } from '../ShopContext1';
 import './Chechout2.css';
+import dayjs from 'dayjs';
+import axios from 'axios';
 const Checkout2 = () => {
+  const { show1, setShow1 } = useShopContext2();
   const { cart = [] } = useShopContext1();
   const result = groupBy(({ id }) => id)(cart);
-  console.log(111, result);
 
   const carts = keys(result);
   const Tota = cart.reduce(
@@ -18,6 +21,44 @@ const Checkout2 = () => {
       ),
     0,
   );
+  const date = dayjs().format(
+    'dddd, MMMM D, YYYY',
+  );
+  const curentEmail =
+    window.localStorage.getItem('userEmail');
+
+  const getData = async () => {
+    const response = await axios.get(
+      'https://64d61e33754d3e0f1361a0ec.mockapi.io/checkout?fbclid=IwAR3LLB3EMaRykaMXkw9Fw_acuFrdHYifV6QZwsu-I90qBob8beFQne_0-K8',
+      {
+        params: {
+          filter: {
+            order: ['id DESC'],
+          },
+        },
+      },
+    );
+
+    return response;
+  };
+  const onCheckout = async () => {
+    if (curentEmail !== null) {
+      const response = await axios.post(
+        'https://64d61e33754d3e0f1361a0ec.mockapi.io/checkout?fbclid=IwAR3LLB3EMaRykaMXkw9Fw_acuFrdHYifV6QZwsu-I90qBob8beFQne_0-K8',
+        {
+          Date: date,
+          email: curentEmail,
+          price: formatter.format(Tota),
+        },
+      );
+
+      if (response.status === 201) {
+        alert('Request sent successfully');
+      }
+    } else {
+      setShow1(true);
+    }
+  };
   return (
     <div className="w-full h-[1829px] bg-white pt-[63px] pl-[100px] pr-[98px] flex flex-row gap-[26px]">
       <div className="flex flex-col w-[608px] h-[1714px] pt-[35px] pl-[74px]">
@@ -158,7 +199,10 @@ const Checkout2 = () => {
           account, and for other purposes
           described in our privacy policy.
         </p>
-        <button className="ml-[111px] mt-[39px] w-[318px] h-[64px] text-center leading-[30px] text-[20px] text-black rounded-[8px] border border-solid border-black ">
+        <button
+          onClick={onCheckout}
+          className="ml-[111px] mt-[39px] w-[318px] h-[64px] text-center leading-[30px] text-[20px] text-black rounded-[8px] border border-solid border-black "
+        >
           {' '}
           Place order
         </button>

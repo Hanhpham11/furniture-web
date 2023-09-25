@@ -33,7 +33,7 @@ const Login = () => {
       },
     );
     if (response.status === 200) {
-      console.log(response);
+      // console.log(response);
       setUsername(response.data);
     }
   };
@@ -41,26 +41,6 @@ const Login = () => {
     getData();
   }, []);
 
-  // const handleChange = (e) => {
-  //   setState({
-  //     ...state,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-  // const handleChange = (e) => {
-  //   setInputFields({
-  //     ...inputFields,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-  console.log('username', username);
-  // const handleSubmit = () => {
-  //   setShow1(false);
-  //   window.localStorage.setItem(
-  //     'email',
-  //     state.email,
-  //   );
-  // };
   const handleSubmit = () => {
     for (let x = 0; x < username.length; x++) {
       if (
@@ -94,7 +74,7 @@ const Login = () => {
       }
     }
   };
-  console.log('check', username);
+  // console.log('check', username);
   return (
     <div>
       {show1 && (

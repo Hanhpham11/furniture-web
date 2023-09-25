@@ -113,7 +113,39 @@ const useShopContext5 = () => {
   return shopContext5;
 };
 ////
+const ShopContext6 = React.createContext();
+const ShopProvider6 = ({ children }) => {
+  const [list2, setList2] = useState([]);
 
+  return (
+    <ShopContext6.Provider
+      value={{ list2, setList2 }}
+    >
+      {children}
+    </ShopContext6.Provider>
+  );
+};
+const useShopContext6 = () => {
+  const shopContext6 = useContext(ShopContext6);
+  return shopContext6;
+};
+///
+const ShopContext7 = React.createContext();
+const ShopProvider7 = ({ children }) => {
+  const [purchase, setPurchase] = useState([]);
+
+  return (
+    <ShopContext7.Provider
+      value={{ purchase, setPurchase }}
+    >
+      {children}
+    </ShopContext7.Provider>
+  );
+};
+const useShopContext7 = () => {
+  const shopContext7 = useContext(ShopContext7);
+  return shopContext7;
+};
 ///
 export {
   ShopProvider1,
@@ -128,4 +160,8 @@ export {
   ShopProvider4,
   ShopProvider5,
   useShopContext5,
+  useShopContext6,
+  ShopProvider6,
+  ShopProvider7,
+  useShopContext7,
 };

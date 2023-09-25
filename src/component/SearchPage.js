@@ -3,12 +3,14 @@ import Header from './Header';
 import Link from 'antd/es/typography/Link';
 import { formatter } from './ShopContext1';
 import { useState } from 'react';
+import { useShopContext6 } from './ShopContext1';
 const SearchPage = (search) => {
+  const { list2, setList2 } = useShopContext6();
   return (
     <div className="w-full">
       <Header />
       <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1  md:gap-[10px] gap-[30px] mx-[30px] font-sans md:mx-[30px] mt-[50px]">
-        {/* {search?.map((item) => (
+        {list2?.map((item) => (
           <div>
             <div
               key={item}
@@ -44,7 +46,7 @@ const SearchPage = (search) => {
               </div>
             </div>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

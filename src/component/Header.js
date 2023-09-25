@@ -17,8 +17,10 @@ import SearchNow from './SearchNow';
 import { Formik, useFormik } from 'formik';
 import Login from './Login';
 import { useContext } from 'react';
-
+import { useShopContext7 } from './ShopContext1';
+import { useNavigate } from 'react-router-dom';
 function Header() {
+  const navigate = useNavigate();
   const [keyword, setKeyword] = useState('');
   function handleInput(e) {
     setKeyword(e.target.value);
@@ -30,7 +32,6 @@ function Header() {
     // console.log(data);
   }
   const [message, setMessage] = useState('');
-
   const [show, setShow] = useState(false);
   const [show5, setShow5] = useState(false);
   const { show3, setShow3 } = useShopContext4();
@@ -68,11 +69,40 @@ function Header() {
     setShow3(false);
     setShow4(true);
   };
-  // const [message, setMessage] = useState('')
-  const setChange = function (childdata) {
-    // console.log('datafromChild', childdata);
+  const { purchase, setPurchase } =
+    useShopContext7();
+  const [checkOut1, setCheckOut1] = useState([]);
+  const getData = async () => {
+    const response = await axios.get(
+      'https://64d61e33754d3e0f1361a0ec.mockapi.io/checkout?fbclid=IwAR3LLB3EMaRykaMXkw9Fw_acuFrdHYifV6QZwsu-I90qBob8beFQne_0-K8',
+      {
+        params: {
+          filter: {
+            order: ['id DESC'],
+          },
+        },
+      },
+    );
+    if (response.status === 200) {
+      setCheckOut1(response.data);
+    }
+    // console.log(response);
   };
-  SearchNow(setChange);
+
+  useEffect(() => {
+    getData();
+  }, []);
+  const email0 =
+    window.localStorage.getItem('userEmail');
+  const onPurchase = () => {
+    for (let z = 0; z < checkOut1.length; z++) {
+      if (checkOut1[z].email == email0) {
+        navigate('/HistoryPurchase');
+
+        setPurchase([checkOut1[z]]);
+      }
+    }
+  };
   return (
     <div>
       <div className="w-full font-sans h-[100px] bg-white pl-[54px]  top-0 left-0 right-0 z-10 fixed">
@@ -273,17 +303,20 @@ function Header() {
       )}
       {show5 && (
         <div>
-          <div className=" px-[5px] py-[10px] fixed right-0 top-[100px] bottom-0 z-10 w-[150px] h-[120px] bg-white flex flex-col gap-[20px] ">
-            <p className="text-gray-700">
+          <div className=" rounded-b-lg bg-slate-300 px-[5px] py-[10px] fixed right-0 top-[100px] bottom-0 z-10 w-[150px] h-[120px]  flex flex-col gap-[20px] ">
+            <button
+              onClick={onPurchase}
+              className="w-full text-white border-none  bg-slate-300 "
+            >
               Purchase history
-            </p>
+            </button>
 
-            <p
+            <button
               onClick={onLoggout}
-              className="mt-[5px] text-gray-700"
+              className="w-full mt-[5px] text-white border-none bg-slate-300 "
             >
               Loggout
-            </p>
+            </button>
           </div>
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"

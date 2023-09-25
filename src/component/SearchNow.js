@@ -4,7 +4,9 @@ import { useState, useEffect } from 'react';
 import { Component } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SearchPage from './SearchPage';
+import { useShopContext6 } from './ShopContext1';
 function SearchNow(callBack) {
+  const { list2, setList2 } = useShopContext6();
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [items, setItems] = useState([]);
@@ -42,10 +44,9 @@ function SearchNow(callBack) {
   const handleKeyDown = (event) => {
     if (event.key === 'Enter') {
       navigate('/SearchPage');
+      setList2(search(data));
     }
   };
-  const childdata = 'hi';
-  callBack = function (childdata) {};
 
   function search(items) {
     return items.filter((item) => {

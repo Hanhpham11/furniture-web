@@ -33,7 +33,7 @@ function Header() {
   }
   const [message, setMessage] = useState('');
   const [show, setShow] = useState(false);
-  const [show5, setShow5] = useState(false);
+  const [show6, setShow6] = useState(false);
   const { show3, setShow3 } = useShopContext4();
   const { show4, setShow4 } = useShopContext5();
   const { show1, setShow1 } = useShopContext2();
@@ -65,9 +65,10 @@ function Header() {
   const account1 = account[0];
   const onLoggout = () => {
     window.localStorage.removeItem('userEmail');
-    setShow5(false);
+    setShow6(false);
     setShow3(false);
     setShow4(true);
+    setCart([]);
   };
   const { purchase, setPurchase } =
     useShopContext7();
@@ -98,9 +99,8 @@ function Header() {
     for (let z = 0; z < checkOut1.length; z++) {
       if (checkOut1[z].email == email0) {
         navigate('/HistoryPurchase');
-
-        setPurchase([checkOut1[z]]);
       }
+      setPurchase([checkOut1[z], ...purchase]);
     }
   };
   return (
@@ -160,7 +160,7 @@ function Header() {
             {show3 && (
               <div className="flex flex-row items-center gap-4 w-[100px]">
                 <div
-                  onClick={() => setShow5(!show5)}
+                  onClick={() => setShow6(!show6)}
                   className=" bg-amber-300 ml-[50px]  rounded-full  text-center py-[4px] h-[40px] w-[40px]"
                 >
                   <p className="text-white text-[28px]">
@@ -301,7 +301,7 @@ function Header() {
           />
         </div>
       )}
-      {show5 && (
+      {show6 && (
         <div>
           <div className=" rounded-b-lg bg-slate-300 px-[5px] py-[10px] fixed right-0 top-[100px] bottom-0 z-10 w-[150px] h-[120px]  flex flex-col gap-[20px] ">
             <button
@@ -320,7 +320,7 @@ function Header() {
           </div>
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
-            onClick={() => setShow5(false)}
+            onClick={() => setShow6(false)}
           />
         </div>
       )}

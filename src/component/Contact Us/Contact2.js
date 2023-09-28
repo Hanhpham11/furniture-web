@@ -2,23 +2,24 @@ import React from 'react';
 import { ReactDOM } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 const Contact2 = () => {
-  const [email, setEmail] = useState('');
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+  const [email1, setEmail1] = useState('');
   const [text1, settext1] = useState('');
   const [text2, settext2] = useState('');
   const [text3, settext3] = useState('');
   const [inputFields, setInputFields] = useState({
-    email: '',
+    email1: '',
     text1: '',
     text2: '',
     text3: '',
   });
-  const handleChange = (e) => {
-    setInputFields({
-      ...inputFields,
-      [e.target.name]: e.target.value,
-    });
-  };
+
   const getData = async () => {
     const response = await axios.get(
       'https://64fe5ad1f8b9eeca9e28ac79.mockapi.io/information/hi/contact',
@@ -35,21 +36,33 @@ const Contact2 = () => {
   };
 
   const onAdd = async () => {
-    const response = await axios.post(
-      'https://64fe5ad1f8b9eeca9e28ac79.mockapi.io/information/hi/contact',
-      {
-        name: text1,
-        email: email,
-        message: text2,
-        subject: text3,
-      },
-    );
+    const email3 =
+      document.getElementById('email');
+    const filter =
+      /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+    if (
+      text1 !== '' &&
+      email1 !== '' &&
+      text3 !== '' &&
+      filter.test(email3.value)
+    ) {
+      const response = await axios.post(
+        'https://64fe5ad1f8b9eeca9e28ac79.mockapi.io/information/hi/contact',
+        {
+          name: text1,
+          email: email1,
+          message: text2,
+          subject: text3,
+        },
+      );
 
-    if (response.status === 201) {
-      alert('Request sent successfully');
+      if (response.status === 201) {
+        alert('Request sent successfully');
+      }
+      console.log(response);
     }
-    console.log(response);
   };
+
   return (
     <div className="w-full h-[1144px] flex flex-col pt-[98px] px-[191px] bg-white  ">
       <p className="leading-[54px] text-[36px] text-black font-[600] ml-[342px]">
@@ -109,12 +122,19 @@ const Contact2 = () => {
             </div>
           </div>
         </div>
-        <div className="w-[635px] h-[923px] ml-[14px] pt-[119px] pl-[53px] pr-[52px] flex flex-col ">
-          <form onsubmit="return false">
+        <div className="w-[635px]  ml-[14px] pt-[119px] pl-[53px] pr-[52px] flex flex-col ">
+          <form
+            onSubmit={handleSubmit((data) =>
+              console.log(data),
+            )}
+          >
             <p className="leading-[24px] text-[16px]">
               Your name
             </p>
             <input
+              {...register('name', {
+                required: true,
+              })}
               className="w-[529px] h-[75px] border rounded-[5px] items-center pl-[29.75px] mt-[22px]"
               placeholder="Abc"
               type="text"
@@ -123,32 +143,57 @@ const Contact2 = () => {
               onChange={(e) =>
                 settext1(e.target.value)
               }
-              
             ></input>
+            {errors.name && (
+              <p className="text-red-500 mt-[5px]">
+                Name is required.
+              </p>
+            )}
             <p className="leading-[24px] text-[16px] mt-[36px]">
               {' '}
               Email address
             </p>
             <input
+              {...register('email', {
+                required: true,
+              })}
+              name="email"
               className="w-[529px] h-[75px] border rounded-[5px] items-center pl-[29.75px] mt-[22px]"
               placeholder="Abc@def.com"
               type="email"
-              value={email}
-              onChange={handleChange}
+              id="email"
+              value={email1}
+              onChange={(e) =>
+                setEmail1(e.target.value)
+              }
             ></input>
+            {errors.name && (
+              <p className="text-red-500 mt-[5px]">
+                Email is required.
+              </p>
+            )}
             <p className="leading-[24px] text-[16px] mt-[36px]">
               {' '}
               Subject
             </p>
             <input
+              {...register('question', {
+                required: true,
+              })}
               className="w-[529px] h-[75px] border rounded-[5px] items-center pl-[29.75px] mt-[22px]"
               placeholder="This is an optional"
               type="text"
+              name="question"
               value={text3}
               onChange={(e) =>
                 settext3(e.target.value)
               }
             ></input>
+            {errors.question && (
+              <p className="text-red-500 mt-[5px]">
+                Question is required.
+              </p>
+            )}
             <p className="leading-[24px] text-[16px] mt-[36px]">
               {' '}
               Message
@@ -164,7 +209,7 @@ const Contact2 = () => {
             ></input>
             <button
               onClick={onAdd}
-              type="button"
+              type="submit"
               className="text-center mt-[49px] w-[237px] h-[55px] rounded-[5px] bg-[#B88E2F] text-[white]"
             >
               Submit

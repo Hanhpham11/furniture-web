@@ -8,6 +8,7 @@ import {
   uploadBytesResumable,
   getDownloadURL,
 } from 'firebase/storage';
+import { Route } from 'react-router-dom';
 import { storage } from '../component/firebaseConfig';
 import { type } from 'ramda';
 import {
@@ -219,6 +220,7 @@ const Adminproduct = () => {
             },
           );
           getData();
+          window.location.reload();
 
           setShow(false);
         });
@@ -234,7 +236,7 @@ const Adminproduct = () => {
         'https://64d61e33754d3e0f1361a0ec.mockapi.io/products/' +
           id,
       );
-
+      window.location.reload();
       if (res.status === 200) {
         alert('Delete item successful');
       }
@@ -242,9 +244,6 @@ const Adminproduct = () => {
       console.log('response', await getData());
     }
   };
-  // useEffect(() => {
-  //   displayData();
-  // }, []);
   const displayData = (data) => {
     const pageItems = data.slice(
       indexOfFirstItem,
@@ -253,7 +252,7 @@ const Adminproduct = () => {
 
     return (
       <div className="w-full ">
-        <table className="w-full mt-[10px]">
+        <table className="w-full mt-[20px]">
           <thead>
             <tr>
               <td>Image</td>
@@ -271,7 +270,7 @@ const Adminproduct = () => {
                   <div>
                     <img
                       src={item.url}
-                      alt={item.name}
+                      alt={item.productname}
                       className="w-[50px] h-[50px] rounded-full"
                     />
                   </div>
@@ -319,6 +318,9 @@ const Adminproduct = () => {
   } else {
     return (
       <div className="w-full">
+        <p className="text-[30px] mt-[20px] text-amber-500">
+          Our product
+        </p>
         <div className="  flex bg-white items-center gap-[10px]">
           <button
             onClick={() => setShow(!show)}

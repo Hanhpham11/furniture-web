@@ -147,6 +147,40 @@ const useShopContext7 = () => {
   return shopContext7;
 };
 ///
+const ShopContext8 = React.createContext();
+const ShopProvider8 = ({ children }) => {
+  const [details, setDetails] = useState([]);
+
+  return (
+    <ShopContext8.Provider
+      value={{ details, setDetails }}
+    >
+      {children}
+    </ShopContext8.Provider>
+  );
+};
+const useShopContext8 = () => {
+  const shopContext8 = useContext(ShopContext8);
+  return shopContext8;
+};
+///
+const ShopContext9 = React.createContext();
+const ShopProvider9 = ({ children }) => {
+  const [show5, setShow5] = useState(false);
+
+  return (
+    <ShopContext9.Provider
+      value={{ show5, setShow5 }}
+    >
+      {children}
+    </ShopContext9.Provider>
+  );
+};
+const useShopContext9 = () => {
+  const shopContext9 = useContext(ShopContext9);
+  return shopContext9;
+};
+///
 export {
   ShopProvider1,
   useShopContext1,
@@ -164,4 +198,8 @@ export {
   ShopProvider6,
   ShopProvider7,
   useShopContext7,
+  useShopContext8,
+  ShopProvider8,
+  useShopContext9,
+  ShopProvider9,
 };

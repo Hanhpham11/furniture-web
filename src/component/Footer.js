@@ -3,8 +3,13 @@ import { Navigate } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Signup from './SignUp';
 import Login from './Login';
+import {
+  useShopContext9,
+  useShopContext2,
+} from './ShopContext1';
 const Footer = () => {
-  const [show1, setShow1] = useState(false);
+  const { show5, setShow5 } = useShopContext9();
+  const { show1, setShow1 } = useShopContext2();
   const initialState = {
     email: '',
     password: '',
@@ -22,24 +27,23 @@ const Footer = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const [getUser, setGetuser] = useState();
-  const [show, setShow] = useState(false);
-  const handleSubmit = () => {
-    window.localStorage.setItem(
-      'email',
-      emai.email,
-      setShow1(true),
-    );
-    const getUser1 =
-      window.localStorage.getItem('email');
-    setGetuser(getUser1);
-  };
+  // const [getUser, setGetuser] = useState();
+  // const [show, setShow] = useState(false);
+  // const handleSubmit = () => {
+  //   window.localStorage.setItem(
+  //     'email',
+  //     emai.email,
+  //     setShow1(true),
+  //   );
+  //   const getUser1 =
+  //     window.localStorage.getItem('email');
+  //   setGetuser(getUser1);
+  // };
   // console.log(getUser);
   const loggin = () => {
-    setShow(true);
+    setShow5(true);
     setShow1(false);
   };
-  window.localStorage.getItem('email');
 
   return (
     <div className="w-full font-sans h-[505px] border-slate-300 pt-[48px] px-[100px] border-solid border-t-2 flex flex-col gap-12 mt-[30px] ">
@@ -115,8 +119,15 @@ const Footer = () => {
       <p className="leading-[24px] text-[16px] text-black">
         2023 furino. All rights reverved
       </p>
-      {show && <Signup show1={show1} />}
-      {show1 && <Login />}
+      {show5 && (
+        <div>
+          <Signup />
+          <div
+            className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
+            onClick={() => setShow5(false)}
+          />
+        </div>
+      )}
     </div>
   );
 };

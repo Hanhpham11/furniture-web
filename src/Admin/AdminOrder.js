@@ -1,8 +1,14 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import {
+  Link,
+  useParams,
+} from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useShopContext8 } from '../component/ShopContext1';
+import { useNavigate } from 'react-router-dom';
 const AdminOrder = () => {
+  const navigate = useNavigate();
   const [checkOut, setCheckOut] = useState([]);
   const getData = async () => {
     const response = await axios.get(
@@ -24,10 +30,18 @@ const AdminOrder = () => {
   useEffect(() => {
     getData();
   }, []);
-
+  const { details, setDetails } =
+    useShopContext8();
+  const onDetails = (detail) => {
+    navigate('/DetailProduct');
+    setDetails([detail]);
+  };
   return (
-    <div className="w-full">
-      <table className="w-full">
+    <div className="w-full ">
+      <p className="text-[30px] mt-[20px] text-amber-500">
+        The Request
+      </p>
+      <table className="w-full mt-[20px]">
         <thead>
           <td>ID</td>
           <td>Date</td>
@@ -43,9 +57,13 @@ const AdminOrder = () => {
               <td>{item.Date}</td>
               <td>{item.email}</td>
               <td>{item.price}</td>
-              <td>{item.payent}</td>
+              <td>{item.payment}</td>
               <td>
-                <p>Detail</p>
+                <p
+                  onClick={() => onDetails(item)}
+                >
+                  Detail
+                </p>
               </td>
             </tr>
           ))}

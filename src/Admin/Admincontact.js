@@ -25,8 +25,11 @@ const Admincontact = () => {
   }, []);
   console.log('checkContact', contact);
   return (
-    <div className="w-full px-[100px] py-[50px]">
-      <table className="w-full border border-solid ">
+    <div className="w-full ">
+      <p className="text-[30px] mt-[20px] text-amber-500">
+        Our product
+      </p>
+      <table className="w-full border border-solid mt-[20px] ">
         <thead>
           <tr>
             <td className="text text-[25px] ">

@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { groupBy, keys } from 'ramda';
 import { formatter } from '../component/ShopContext1';
 import './Details.css';

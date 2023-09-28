@@ -83,25 +83,25 @@ const About2 = () => {
         <div className="flex flex-row gap-[38px] mt-[54px] ml-[424px]">
           <button
             onClick={() => Post1(0, 3)}
-            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7]"
+            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7] focus:bg-amber-200"
           >
             1
           </button>
           <button
             onClick={() => Post1(3, 6)}
-            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7]"
+            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7] focus:bg-amber-200"
           >
             2
           </button>
           <button
             onClick={() => Post1(6, 9)}
-            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7]"
+            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7] focus:bg-amber-200"
           >
             3
           </button>
           <button
             onClick={() => Post1(9, 12)}
-            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7]"
+            className="w-[60px] h-[60px] rounded-[10px] text-center bg-[#F9F1E7] focus:bg-amber-200"
           >
             4
           </button>

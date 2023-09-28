@@ -15,6 +15,8 @@ import {
   ShopProvider5,
   ShopProvider6,
   ShopProvider7,
+  ShopProvider8,
+  ShopProvider9,
 } from './component/ShopContext1';
 import Details from './DetailsProducts/Details';
 import About from './component/About/About';
@@ -22,6 +24,7 @@ import SearchPage from './component/SearchPage';
 import Adminproduct from './Admin/Adminproduct';
 import Admin from './Admin/Admin';
 import Purchase from './component/Purchase';
+import DetailProduct from './Admin/DetailProduct';
 const router = createBrowserRouter([
   {
     path: '/',
@@ -64,26 +67,34 @@ const router = createBrowserRouter([
     path: '/HistoryPurchase',
     element: <Purchase />,
   },
+  {
+    path: '/DetailProduct',
+    element: <DetailProduct />,
+  },
 ]);
 const App = () => {
   return (
-    <ShopProvider7>
-      <ShopProvider6>
-        <ShopProvider5>
-          <ShopProvider4>
-            <ShopProvider3>
-              <ShopProvider2>
-                <ShopProvider1>
-                  <RouterProvider
-                    router={router}
-                  />
-                </ShopProvider1>
-              </ShopProvider2>
-            </ShopProvider3>
-          </ShopProvider4>
-        </ShopProvider5>
-      </ShopProvider6>
-    </ShopProvider7>
+    <ShopProvider9>
+      <ShopProvider8>
+        <ShopProvider7>
+          <ShopProvider6>
+            <ShopProvider5>
+              <ShopProvider4>
+                <ShopProvider3>
+                  <ShopProvider2>
+                    <ShopProvider1>
+                      <RouterProvider
+                        router={router}
+                      />
+                    </ShopProvider1>
+                  </ShopProvider2>
+                </ShopProvider3>
+              </ShopProvider4>
+            </ShopProvider5>
+          </ShopProvider6>
+        </ShopProvider7>
+      </ShopProvider8>
+    </ShopProvider9>
   );
 };
 

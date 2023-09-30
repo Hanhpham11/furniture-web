@@ -401,6 +401,7 @@ const Checkout2 = () => {
           >
             <div className="flex flex-row gap-[5px] items-center mt-[22.5px]">
               <input
+                checked="checked"
                 id="card"
                 type="radio"
                 name="pay"

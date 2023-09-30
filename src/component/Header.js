@@ -103,7 +103,16 @@ function Header() {
 
     if (purchase.length === 0) {
       for (let z = 0; z < checkOut1.length; z++) {
-        if (checkOut1[z].email === email0) {
+        if (checkOut1[z].email == email0) {
+          newArray.unshift(checkOut1[z]);
+          console.log(newArray);
+          setPurchase(newArray);
+        }
+      }
+    } else {
+      setPurchase([]);
+      for (let z = 0; z < checkOut1.length; z++) {
+        if (checkOut1[z].email == email0) {
           newArray.unshift(checkOut1[z]);
           console.log(newArray);
           setPurchase(newArray);

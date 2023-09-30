@@ -110,6 +110,7 @@ const Adminproduct = () => {
       setIsLoaded(true);
       setItems(json);
       setData(json);
+      getData();
     });
   }, []);
 
@@ -134,15 +135,15 @@ const Adminproduct = () => {
     return response;
   };
 
-  const handleGetData = () => {
-    getData()
-      .then((res) => {
-        setItems(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
+  // const handleGetData = () => {
+  //   getData()
+  //     .then((res) => {
+  //       setItems(res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
 
   const [image, setImage] = useState(null); // state lưu ảnh sau khi chọn
   const [progress, setProgress] = useState(0); // state hiển thị phần trăm tải ảnh lên store
@@ -220,7 +221,7 @@ const Adminproduct = () => {
             },
           );
           getData();
-          window.location.reload();
+          // window.location.reload();
           setShow(false);
         });
       },
@@ -236,13 +237,14 @@ const Adminproduct = () => {
       );
 
       if (res.status === 200) {
-        window.location.reload();
+        // window.location.reload();
         alert('Delete item successful');
       }
       await getData();
       console.log('response', await getData());
     }
   };
+
   const displayData = (data) => {
     const pageItems = data.slice(
       indexOfFirstItem,

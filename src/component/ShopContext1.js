@@ -46,11 +46,12 @@ const validate = (values) => {
 const ShopContext2 = React.createContext();
 
 const ShopProvider2 = ({ children }) => {
-  const [show1, setShow1] = useState(false);
+  const [showLogin, setShowLogin] =
+    useState(false);
 
   return (
     <ShopContext2.Provider
-      value={{ show1, setShow1 }}
+      value={{ showLogin, setShowLogin }}
     >
       {children}
     </ShopContext2.Provider>
@@ -81,11 +82,11 @@ const useShopContext3 = () => {
 ///
 const ShopContext4 = React.createContext();
 const ShopProvider4 = ({ children }) => {
-  const [show3, setShow3] = useState(false);
+  const [showUser, setShowUser] = useState(false);
 
   return (
     <ShopContext4.Provider
-      value={{ show3, setShow3 }}
+      value={{ showUser, setShowUser }}
     >
       {children}
     </ShopContext4.Provider>
@@ -98,11 +99,12 @@ const useShopContext4 = () => {
 //
 const ShopContext5 = React.createContext();
 const ShopProvider5 = ({ children }) => {
-  const [show4, setShow4] = useState(true);
+  const [showSignin, setShowSignin] =
+    useState(true);
 
   return (
     <ShopContext5.Provider
-      value={{ show4, setShow4 }}
+      value={{ showSignin, setShowSignin }}
     >
       {children}
     </ShopContext5.Provider>
@@ -166,11 +168,12 @@ const useShopContext8 = () => {
 ///
 const ShopContext9 = React.createContext();
 const ShopProvider9 = ({ children }) => {
-  const [show5, setShow5] = useState(false);
+  const [showSignup, setShowSignup] =
+    useState(false);
 
   return (
     <ShopContext9.Provider
-      value={{ show5, setShow5 }}
+      value={{ showSignup, setShowSignup }}
     >
       {children}
     </ShopContext9.Provider>

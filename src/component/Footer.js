@@ -8,8 +8,10 @@ import {
   useShopContext2,
 } from './ShopContext1';
 const Footer = () => {
-  const { show5, setShow5 } = useShopContext9();
-  const { show1, setShow1 } = useShopContext2();
+  const { showSignup, setShowSignup } =
+    useShopContext9();
+  const { showLogin, setShowLogin } =
+    useShopContext2();
   const initialState = {
     email: '',
     password: '',
@@ -41,8 +43,8 @@ const Footer = () => {
   // };
   // console.log(getUser);
   const loggin = () => {
-    setShow5(true);
-    setShow1(false);
+    setShowSignup(true);
+    setShowLogin(false);
   };
 
   return (
@@ -119,12 +121,12 @@ const Footer = () => {
       <p className="leading-[24px] text-[16px] text-black">
         2023 furino. All rights reverved
       </p>
-      {show5 && (
+      {showSignup && (
         <div>
           <Signup />
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
-            onClick={() => setShow5(false)}
+            onClick={() => setShowSignup(false)}
           />
         </div>
       )}

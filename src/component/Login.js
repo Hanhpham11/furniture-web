@@ -11,8 +11,10 @@ import {
 } from './ShopContext1';
 import { useContext } from 'react';
 const Login = () => {
-  const { show1, setShow1 } = useShopContext2();
-  const { show5, setShow5 } = useShopContext9();
+  const { showLogin, setShowLogin } =
+    useShopContext2();
+  const { showSignup, setShowSignup } =
+    useShopContext9();
   const [passwor, setPasswor] = useState('');
   // const [inputFields, setInputFields] = useState({
   //   email1: '',
@@ -20,8 +22,10 @@ const Login = () => {
   // });
   const [username, setUsername] = useState([]);
   const navigate = useNavigate();
-  const { show3, setShow3 } = useShopContext4();
-  const { show4, setShow4 } = useShopContext5();
+  const { showUser, setShowUser } =
+    useShopContext4();
+  const { showSignin, setShowSignin } =
+    useShopContext5();
   const [show0, setShow0] = useState(false);
   const [email1, setEmail1] = useState();
   const getData = async () => {
@@ -60,20 +64,20 @@ const Login = () => {
           'userEmail',
           email1,
         );
-        setShow1(false);
-        setShow4(false);
-        setShow3(true);
+        setShowLogin(false);
+        setShowSignin(false);
+        setShowUser(true);
       }
     }
   };
   // console.log('check', username);
   const onSignin = () => {
-    setShow1(false);
-    setShow5(true);
+    setShowLogin(false);
+    setShowSignup(true);
   };
   return (
     <div>
-      {show1 && (
+      {showLogin && (
         <form
           onSubmit="return false"
           className="items-center register-form z-10 fixed top-[200px] left-[550px] border border-solid border-black rounded-[20px] flex flex-col gap-[10px] w-[300px] bg-white h-[300px] items-center pt-[30px]"

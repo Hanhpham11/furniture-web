@@ -155,9 +155,9 @@ const Adminproduct = () => {
       setImage(e.target.files[0]);
     }
   };
-  // useEffect(() => {
-  //   handleGetData();
-  // }, []);
+  useEffect(() => {
+    getData();
+  }, []);
   const handleUpload = () => {
     const storageRef = ref(
       storage,
@@ -221,7 +221,6 @@ const Adminproduct = () => {
           );
           getData();
           window.location.reload();
-
           setShow(false);
         });
       },
@@ -230,14 +229,14 @@ const Adminproduct = () => {
 
   const onDelete = async (id) => {
     let text = 'Are you sure you want to delete';
-
     if (window.confirm(text) === true) {
       const res = await axios.delete(
         'https://64d61e33754d3e0f1361a0ec.mockapi.io/products/' +
           id,
       );
-      window.location.reload();
+
       if (res.status === 200) {
+        window.location.reload();
         alert('Delete item successful');
       }
       await getData();

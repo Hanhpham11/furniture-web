@@ -20,8 +20,10 @@ const Signup = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const { show5, setShow5 } = useShopContext9();
-  const { show1, setShow1 } = useShopContext2();
+  const { showSignup, setShowSignup } =
+    useShopContext9();
+  const { showLogin, setShowLogin } =
+    useShopContext2();
   const [email0, setEmail0] = useState('');
   const [passwor, setPasswor] = useState('');
   const [passwor1, setPasswor1] = useState('');
@@ -86,22 +88,14 @@ const Signup = () => {
       const response = await axios.post(
         'https://64fe5ad1f8b9eeca9e28ac79.mockapi.io/information/hi/User',
         {
-          useemail: email0,
+          useEmail: email0,
           password1: passwor,
         },
       );
-      if (
-        response.status === 201 &&
-        account == ''
-      ) {
+      if (response.status === 201) {
         alert('Request sent successfully');
-        setShow5(false);
-        setShow1(true);
-      } else if (
-        response.status === 201 &&
-        account !== ''
-      ) {
-        setShow5(false);
+        setShowSignup(false);
+        setShowLogin(true);
       }
     } else {
       alert(

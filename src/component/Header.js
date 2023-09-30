@@ -34,10 +34,13 @@ function Header() {
   const [message, setMessage] = useState('');
   const [show, setShow] = useState(false);
   const [show6, setShow6] = useState(false);
-  const { show3, setShow3 } = useShopContext4();
-  const { show4, setShow4 } = useShopContext5();
-  const { show1, setShow1 } = useShopContext2();
-  const { show2, setShow2 } = useShopContext3();
+  const { showUser, setShowUser } =
+    useShopContext4();
+  const { showSignin, setShowSignin } =
+    useShopContext5();
+  const { showLogin, setShowLogin } =
+    useShopContext2();
+  // const { show2, setShow2 } = useShopContext3();
   const { cart = [], setCart } =
     useShopContext1();
   const result = groupBy(({ id }) => id)(cart);
@@ -66,8 +69,8 @@ function Header() {
   const onLoggout = () => {
     window.localStorage.removeItem('userEmail');
     setShow6(false);
-    setShow3(false);
-    setShow4(true);
+    setShowUser(false);
+    setShowSignin(true);
     setCart([]);
   };
   const { purchase, setPurchase } =
@@ -96,12 +99,26 @@ function Header() {
   const email0 =
     window.localStorage.getItem('userEmail');
   const onPurchase = () => {
-    for (let z = 0; z < checkOut1.length; z++) {
-      if (checkOut1[z].email == email0) {
-        navigate('/HistoryPurchase');
+    const newArray = [];
+
+    if (purchase.length == 0) {
+      for (let z = 0; z < checkOut1.length; z++) {
+        if (checkOut1[z].email === email0) {
+          newArray.unshift(checkOut1[z]);
+          console.log(newArray);
+          setPurchase(newArray);
+        }
       }
-      setPurchase([checkOut1[z], ...purchase]);
+    } else {
+      const lengt = checkOut1.length - 1;
+      if (checkOut1[lengt].email == email0) {
+        newArray.unshift(checkOut1[lengt]);
+        console.log(newArray);
+        setPurchase(newArray);
+      }
     }
+    navigate('/HistoryPurchase');
+    console.log(newArray);
   };
   return (
     <div>
@@ -157,7 +174,7 @@ function Header() {
                 </p>
               </div>
             </div>
-            {show3 && (
+            {showUser && (
               <div className="flex flex-row items-center gap-4 w-[100px]">
                 <div
                   onClick={() => setShow6(!show6)}
@@ -175,25 +192,28 @@ function Header() {
                 </button> */}
               </div>
             )}
-            {show4 && (
+            {showSignin && (
               <div>
                 <button
                   className=" rounded-md w-[100px] bg-[#FA8443] text-white"
-                  onClick={() => setShow1(!show1)}
+                  onClick={() =>
+                    setShowLogin(!showLogin)
+                  }
                 >
                   Sign In
                 </button>
-                {show1 && <Login />}
+                {showLogin && <Login />}
               </div>
             )}
           </div>
         </div>
       </div>
-      {show1 && (
+      {showLogin && (
         <div>
+          <Login />
           <div
             className=" fixed inset-0 bg-black bg-opacity-40 z-[5]"
-            onClick={() => setShow1(false)}
+            onClick={() => setShowLogin(false)}
           />
         </div>
       )}
@@ -303,7 +323,7 @@ function Header() {
       )}
       {show6 && (
         <div>
-          <div className=" rounded-b-lg bg-slate-300 px-[5px] py-[10px] fixed right-0 top-[100px] bottom-0 z-10 w-[150px] h-[120px]  flex flex-col gap-[20px] ">
+          <div className=" rounded-b-lg bg-slate-300 px-[5px] py-[10px] fixed right-0 top-[100px] bottom-0 z-10 w-[150px] h-[120px]  flex flex-col gap-[5px] ">
             <button
               onClick={onPurchase}
               className="w-full text-white border-none  bg-slate-300 "

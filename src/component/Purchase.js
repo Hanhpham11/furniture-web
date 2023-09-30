@@ -7,16 +7,12 @@ import { groupBy, keys } from 'ramda';
 const Purchase = () => {
   const { purchase, setPurchase } =
     useShopContext7();
-  const result = groupBy(({ id }) => id)(
-    purchase[0].listproduct,
-  );
-  const carts = keys(result);
   console.log(purchase);
   return (
     <div className="w-full">
       <Header />
       <div className="mt-[100px] flex flex-col w-full px-[100px]">
-        {purchase.map((item, index) => (
+        {purchase?.map((item, index) => (
           <div
             key={index}
             className="flex flex-col gap-[10px]"

@@ -221,7 +221,7 @@ const Adminproduct = () => {
             },
           );
           getData();
-          // window.location.reload();
+          window.location.reload();
           setShow(false);
         });
       },
@@ -237,7 +237,7 @@ const Adminproduct = () => {
       );
 
       if (res.status === 200) {
-        // window.location.reload();
+        window.location.reload();
         alert('Delete item successful');
       }
       await getData();

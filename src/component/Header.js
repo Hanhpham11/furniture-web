@@ -101,20 +101,13 @@ function Header() {
   const onPurchase = () => {
     const newArray = [];
 
-    if (purchase.length == 0) {
+    if (purchase.length === 0) {
       for (let z = 0; z < checkOut1.length; z++) {
         if (checkOut1[z].email === email0) {
           newArray.unshift(checkOut1[z]);
           console.log(newArray);
           setPurchase(newArray);
         }
-      }
-    } else {
-      const lengt = checkOut1.length - 1;
-      if (checkOut1[lengt].email == email0) {
-        newArray.unshift(checkOut1[lengt]);
-        console.log(newArray);
-        setPurchase(newArray);
       }
     }
     navigate('/HistoryPurchase');
